@@ -1,1 +1,32 @@
 @import "tailwindcss";
+
+@plugin "tailwind-scrollbar";
+
+@theme {
+    --font-sans: "Interim", sans-serif;
+    --color-nyanza: #EAF9DD;
+    --color-kombu-green: #4C5D41;
+    --color-charcoal-green: #314131;
+    --color-kelly-green: #239A36;
+    --color-forest-green: #1F6F25;
+    --color-dark-charcoal-green: #304030;
+    --color-eerie-black: #181E18;
+    --color-sage-green: #98B397;
+    --color-olive-drab: #4C5C40;
+}
+
+/* Base */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    @apply bg-eerie-black text-nyanza;
+}
+
+/* Components */
+
+.menu-btn {
+    @apply w-10 h-10 grid place-items-center bg-kelly-green/10 rounded-xl ring-inset ring-1 ring-kelly-green/[0.02] backdrop-blur-2xl hover:bg-kelly-green/15 transition-[transform,background-color] active:scale-95
+}
