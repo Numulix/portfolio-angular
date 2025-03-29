@@ -22,7 +22,7 @@ export const navItems: NavItem[] = [
     },
     {
         label: 'Contact',
-        link: '#contacl',
-        class: 'nav-link md:hidden'
+        link: '#contact',
+        class: 'nav-link'
     },
 ]
