@@ -51,6 +51,30 @@ body {
     @apply absolute top-2 left-2 right-2 h-9 bg-kelly-green rounded-lg -z-10 transition-[top,left] duration-500
 }
 
+.btn {
+    @apply max-w-max h-9 flex items-center gap-2 px-4 rounded-xl font-medium text-sm ring-1 ring-olive-drab ring-inset transition-[background-color] cursor-pointer
+}
+
+.btn-secondary {
+    @apply bg-kelly-green text-olive-drab active:bg-kelly-green/80
+}
+
+.btn .material-symbols-rounded {
+    @apply text-[18px]
+}
+
+.btn:has(.material-symbols-rounded) {
+    @apply pr-3    
+}
+
+.btn-primary {
+    @apply h-11 bg-kelly-green text-nyanza hover:bg-forest-green active:bg-kelly-green
+}
+
+.btn-outline {
+    @apply h-11 bg-kombu-green hover:bg-kombu-green/50 active:bg-kombu-green
+}
+
 /* Typography */
 .headline-1 {
     @apply max-w-max;
