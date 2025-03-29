@@ -1,1 +1,6 @@
-<p>navbar works!</p>
+<nav [class]="'navbar ' + (navOpen ? 'active' : '')">
+    @for (navItem of navItems; track navItem.label) {
+      <a [href]="navItem.link" [className]="navItem.class" (click)="activeCurrentLink($event.target)">{{ navItem.label }}</a> 
+    }
+    <div class="active-box" #activeBox></div>
+</nav>

@@ -7,15 +7,15 @@
         </h1>
 
         <div class="relative md:justify-self-center">
-            <button (click)="null" class="menu-btn md:hidden">
+            <button (click)="toggleNavOpen()" class="menu-btn md:hidden">
                 <span class="material-symbols-rounded">
-                    menu
+                    {{ navOpen ? 'close' : 'menu' }}
                 </span>
             </button>
 
-            Navbar
+            <app-navbar [navOpen]="navOpen" />
         </div>
 
-        <a href="#contact">Contact Me</a>
+        <a href="#contact" class="btn btn-secondary max-md:hidden md:justify-self-end">Contact Me</a>
     </div>
 </header>
