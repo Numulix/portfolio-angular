@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { aboutItems } from '../../utils/aboutItems';
+import { aboutItems } from '../../consts/aboutItems';
 
 @Component({
   selector: 'app-about',

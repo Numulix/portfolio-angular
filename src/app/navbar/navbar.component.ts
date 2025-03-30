@@ -1,5 +1,5 @@
 import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, Inject, Input, OnInit, ViewChild } from '@angular/core';
-import { navItems } from '../../utils/navItems';
+import { navItems } from '../../consts/navItems';
 import { DOCUMENT } from '@angular/common';
 
 @Component({

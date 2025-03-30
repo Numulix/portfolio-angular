@@ -1,0 +1,17 @@
+<section class="section">
+    <div class="container">
+        <h2 class="headline-2">
+            Work Tools That I Use
+        </h2>
+
+        <p class="text-nyanza mt-3 mb-8 max-w-[50ch]">
+            Using the latest tools and technologies, I build modern, responsive, and scalable web applications.
+        </p>
+
+        <div class="grid gap-3 grid-cols-[repeat(auto-fill,minmax(250px,1fr))]">
+            @for (skill of skills; track skill.name) {
+                <app-skill-card [icon]="skill.icon" [name]="skill.name" [description]="skill.description" />
+            }
+        </div>
+    </div>
+</section>
