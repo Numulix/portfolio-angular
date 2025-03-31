@@ -1,0 +1,53 @@
+<footer class="section">
+    <div class="container">
+        <div class="lg:grid lg:grid-cols-2">
+            <div class="mb-10">
+                <h2 class="headline-1 mb-8 lg:max-w-[12ch]">
+                    Warm regards!
+                </h2>
+
+                <app-button buttonType="primary" href="mailto:jbabic999@gmail.com" label="Send me an email" icon="chevron_right" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 lg:pl-20">
+                <div>
+                    <p class="mb-2">Sitemap</p>
+
+                    <ul>
+                        @for (link of navItems; track link.label) {
+                            <li class="">
+                                <a [href]="link.link" class="block text-sm text-nyanza py-1 transition-colors hover:text-kelly-green">
+                                    {{ link.label }}
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <div>
+                    <p class="mb-2">Socials</p>
+
+                    <ul>
+                        @for (link of socials; track link.alt) {
+                            <li class="">
+                                <a [href]="link.href" class="block text-sm text-nyanza py-1 transition-colors hover:text-kelly-green" target="_blank">
+                                    {{ link.alt }}
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-10 mb-8">
+            <a href="" class="">
+                <img src="/images/mini-meowscarada.png" alt="Mini Meowscarada" width="60" height="60" />
+            </a>
+
+            <p class="text-sage-green text-sm">
+                &copy; 2025 <span class="text-nyanza">Numulix (Jovan Babić)</span>
+            </p>
+        </div>
+    </div>
+</footer>
