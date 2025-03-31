@@ -16,8 +16,8 @@ export const navItems: NavItem[] = [
         class: 'nav-link'
     },
     {
-        label: 'Work',
-        link: '#work',
+        label: 'Projects',
+        link: '#projects',
         class: 'nav-link'
     },
     {
