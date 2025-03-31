@@ -13,7 +13,7 @@ export const aboutItems: AboutItem[] = [
         number: 3
     },
     {
-        label: 'Pokemon caught',
+        label: 'Pokémon caught',
         number: 580
     }
 ]

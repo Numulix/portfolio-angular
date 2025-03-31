@@ -22,7 +22,7 @@ export const projects: ProjectItem[] = [
         link: 'https://github.com/Numulix/files-away'
     },
     {
-        image: '/projects/files-away.png',
+        image: '/projects/portfolio.png',
         title: 'Portfolio',
         tags: ['Angular', 'Tailwind CSS'],
         description: 'This portfolio. You are looking at it :)',

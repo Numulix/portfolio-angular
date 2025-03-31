@@ -11,7 +11,7 @@
 
             <div class="flex items-center gap-2">
                 @for (link of socials; track link.alt) {
-                    <a [href]="link.href" target="_blank" class="w-12 h-12 grid place-items-center ring-inset ring-2 ring-kelly-green rounded-lg transition-[background-color,color] hover:bg-sage-green hover:text-eerie-black active:bg-sage-green">
+                    <a [href]="link.href" target="_blank" class="w-12 h-12 grid place-items-center bg-sage-green ring-inset ring-2 ring-kelly-green rounded-lg transition-[background-color,color] hover:bg-sage-green hover:text-eerie-black active:bg-sage-green">
                         <img [src]="link.icon" [alt]="link.alt" width="32" height="32" />
                     </a>
                 }
