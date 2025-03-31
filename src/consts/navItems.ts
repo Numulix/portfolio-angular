@@ -21,6 +21,11 @@ export const navItems: NavItem[] = [
         class: 'nav-link'
     },
     {
+        label: 'Experience',
+        link: "#experience",
+        class: 'nav-link'
+    },
+    {
         label: 'Contact',
         link: '#contact',
         class: 'nav-link'

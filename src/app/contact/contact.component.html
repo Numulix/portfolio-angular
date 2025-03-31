@@ -1,0 +1,42 @@
+<section class="section" id="contact">
+    <div class="container lg:grid lg:grid-cols-2 lg:items-stretch">
+        <div class="mb-12 lg:mb-0 lg:flex lg:flex-col">
+            <h2 class="headline-2 lg:max-w-[12ch]">
+                Feel free to contact me
+            </h2>
+
+            <p class="text-nyanza mt-3 mb-8 max-w-[50ch] lg:max-w-[30ch]">
+                Check out my socials below and contact me in any way you see fit.
+            </p>
+
+            <div class="flex items-center gap-2">
+                @for (link of socials; track link.alt) {
+                    <a [href]="link.href" target="_blank" class="w-12 h-12 grid place-items-center ring-inset ring-2 ring-kelly-green rounded-lg transition-[background-color,color] hover:bg-sage-green hover:text-eerie-black active:bg-sage-green">
+                        <img [src]="link.icon" [alt]="link.alt" width="32" height="32" />
+                    </a>
+                }
+            </div>
+        </div>
+
+        <form action="https://getform.io/f/ayvkjnvb" method="post" class="xl:pl-10 2xl:pl-20">
+            <div class="md:grid md:items-center md:grid-cols-2 md:gap-2">
+                <div class="mb-4">
+                    <label for="name" class="label">Name</label>
+                    <input type="text" name="name" id="name" class="text-field" autocomplete="name" placeholder="Jovan Babic" />
+                </div>
+
+                <div class="mb-4">
+                    <label for="email" class="label">E-mail</label>
+                    <input type="email" name="email" id="email" class="text-field" autocomplete="name" placeholder="jbabic999@gmail.com" />
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="message" class="label">Message</label>
+                <textarea name="message" id="message" placeholder="Hi!" required class="text-field resize-y min-h-32 max-h-80"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full justify-center !max-w-none">Submit</button>
+        </form>
+    </div>
+</section>
