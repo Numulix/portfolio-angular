@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Inject, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { navItems } from '../../consts/navItems';
 import { DOCUMENT } from '@angular/common';
 
@@ -9,7 +9,7 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent implements AfterViewInit {
+export class NavbarComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('activeBox') activeBox!: ElementRef;
 
   @Input() navOpen: boolean = false;
@@ -24,6 +24,8 @@ export class NavbarComponent implements AfterViewInit {
 
   readonly navItems = navItems;
 
+  private _visibilityChangeHandler: (() => void) | null = null;
+
   private _initActiveBox(): void {
     if (this.currentActiveEl) {
       this.activeBox.nativeElement.style.top = this.currentActiveEl.offsetTop + 'px';
@@ -37,6 +39,21 @@ export class NavbarComponent implements AfterViewInit {
   }
 
   constructor (@Inject(DOCUMENT) private _document: Document) {}
+
+  ngOnInit(): void {
+    this._visibilityChangeHandler = () => {
+      if (this._document.visibilityState === 'visible') {
+        setTimeout(() => this._initActiveBox());
+      }
+    };
+    this._document.addEventListener('visibilitychange', this._visibilityChangeHandler);
+  }
+
+  ngOnDestroy(): void {
+    if (this._visibilityChangeHandler) {
+      this._document.removeEventListener('visibilitychange', this._visibilityChangeHandler);
+    }
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
