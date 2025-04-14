@@ -27,5 +27,12 @@ export const projects: ProjectItem[] = [
         tags: ['Angular', 'Tailwind CSS'],
         description: 'This portfolio. You are looking at it :)',
         link: 'https://github.com/Numulix/portfolio-angular'
+    },
+    {
+        image: '/projects/ptcg-browser.png',
+        title: 'Pokemon TCG Browser',
+        tags: ['React', 'TypeScript', 'Vite', 'Tailwind CSS'],
+        description: 'A simple web application to browse and search for Pokemon TCG cards. This serves as a mini scalable project to practice React',
+        link: 'https://github.com/Numulix/pokemon-tcg-browser'
     }
 ]

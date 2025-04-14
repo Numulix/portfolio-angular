@@ -4,11 +4,7 @@
             Notable Projects
         </h2>
 
-        <p class="text-nyanza mt-3 mb-8 max-w-[50ch]">
-            It's not much, but it's honest work.
-        </p>
-
-        <div class="grid gap-x-4 gap-y-5 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
+        <div class="grid gap-x-4 gap-y-5 grid-cols-[repeat(auto-fill,minmax(450px,1fr))]">
             @for (project of projects; track project.title) {
                 <app-project-card
                     [image]="project.image"
