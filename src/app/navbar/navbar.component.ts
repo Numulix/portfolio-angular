@@ -16,7 +16,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, OnDestroy {
 
   @HostListener('window:resize')
   onResize() {
-    this._initActiveBox();
+    this._debouncedInit();
   }
 
   currentActiveEl: any = null;
@@ -25,19 +25,39 @@ export class NavbarComponent implements AfterViewInit, OnInit, OnDestroy {
   readonly navItems = navItems;
 
   private _visibilityChangeHandler: (() => void) | null = null;
+  private _loadHandler: (() => void) | null = null;
   private _initTimeout: any = null;
+  private _resizeTimeout: any = null;
+
+  private _debouncedInit(): void {
+    if (this._resizeTimeout) {
+      clearTimeout(this._resizeTimeout);
+    }
+    this._resizeTimeout = setTimeout(() => {
+      this._findActiveElement();
+      this._initActiveBox();
+    }, 100);
+  }
 
   private _initActiveBox(): void {
     if (!this.activeBox?.nativeElement) return;
 
     if (this.currentActiveEl) {
+      // Force a reflow to ensure accurate measurements
+      this.currentActiveEl.offsetHeight;
+      
       requestAnimationFrame(() => {
         try {
-          this.activeBox.nativeElement.style.top = `${this.currentActiveEl.offsetTop}px`;
-          this.activeBox.nativeElement.style.left = `${this.currentActiveEl.offsetLeft}px`;
-          this.activeBox.nativeElement.style.width = `${this.currentActiveEl.offsetWidth}px`;
-          this.activeBox.nativeElement.style.height = `${this.currentActiveEl.offsetHeight}px`;
-          this.activeBox.nativeElement.style.opacity = '1';
+          const rect = this.currentActiveEl.getBoundingClientRect();
+          const parentRect = this.currentActiveEl.parentElement?.getBoundingClientRect();
+          
+          if (parentRect) {
+            this.activeBox.nativeElement.style.top = `${rect.top - parentRect.top}px`;
+            this.activeBox.nativeElement.style.left = `${rect.left - parentRect.left}px`;
+            this.activeBox.nativeElement.style.width = `${rect.width}px`;
+            this.activeBox.nativeElement.style.height = `${rect.height}px`;
+            this.activeBox.nativeElement.style.opacity = '1';
+          }
         } catch (error) {
           console.error('Error positioning active box:', error);
         }
@@ -64,28 +84,44 @@ export class NavbarComponent implements AfterViewInit, OnInit, OnDestroy {
   ngOnInit(): void {
     this._visibilityChangeHandler = () => {
       if (this._document.visibilityState === 'visible') {
-        this._findActiveElement();
-        this._initActiveBox();
+        this._debouncedInit();
       }
     };
+
+    this._loadHandler = () => {
+      this._debouncedInit();
+    };
+
     this._document.addEventListener('visibilitychange', this._visibilityChangeHandler);
+    window.addEventListener('load', this._loadHandler);
   }
 
   ngOnDestroy(): void {
     if (this._visibilityChangeHandler) {
       this._document.removeEventListener('visibilitychange', this._visibilityChangeHandler);
     }
+    if (this._loadHandler) {
+      window.removeEventListener('load', this._loadHandler);
+    }
     if (this._initTimeout) {
       clearTimeout(this._initTimeout);
+    }
+    if (this._resizeTimeout) {
+      clearTimeout(this._resizeTimeout);
     }
   }
 
   ngAfterViewInit(): void {
-    // Wait for the next render cycle
+    // Initial positioning after view init
     this._initTimeout = setTimeout(() => {
       this._findActiveElement();
       this._initActiveBox();
     }, 0);
+
+    // Backup positioning after everything is loaded
+    if (document.readyState === 'complete') {
+      this._debouncedInit();
+    }
   }
 
   activeCurrentLink(target: EventTarget | null): void {
