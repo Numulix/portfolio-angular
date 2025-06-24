@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProjectCardComponent } from './project-card/project-card.component';
-import { ProjectItem } from '../../consts/types';
-import { JsonSiloService } from '../services/jsonsilo.service';
+import { ProjectItem } from '../../../consts/types';
+import { JsonSiloService } from '../../services/jsonsilo.service';
 
 @Component({
   selector: 'app-projects',

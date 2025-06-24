@@ -1,0 +1,9 @@
+[
+    {
+        "title": "I Was Tired of Missing Pokemon Card Restocks, so I Built a Bot to Watch For Me",
+        "slug": "pokemon-tcg-scraper-1",
+        "publishedAt": "23-06-2025",
+        "tags": ["discord", "typescript", "system-design"],
+        "summary": "Being tired of scalpers and missing restocks, I built a Discord bot that watches and notifies me of Pokemon TCG restocks."
+    }
+]

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ButtonComponent } from "../buttons/primary-button/button.component";
+import { ButtonComponent } from '../buttons/primary-button/button.component';
 import { navItems } from '../../consts/navItems';
 import { socials } from '../../consts/socials';
 

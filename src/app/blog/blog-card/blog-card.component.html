@@ -1,0 +1,15 @@
+<article class="mt-2 mb-2">
+    <div class="w-full bg-charcoal-green border border-olive-drab rounded-lg p-4 md:p-6">
+        <h3 class="text-nyanza title-1 mb-2 md:mb-4 md:text-xl md:max-w-[60h]">{{ title }}</h3>
+        <p>{{ summary }}</p>
+        <small class="text-sm text-sage-green">{{ publishedAt }}</small>
+        <app-button
+            classes="mt-4"
+            buttonType="outline"
+            [href]="'/blog/' + slug"
+            label="Read Post"
+            icon="arrow_forward"
+            target="_self"
+        />
+    </div>
+</article>

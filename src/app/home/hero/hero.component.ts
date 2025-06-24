@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ButtonComponent } from "../buttons/primary-button/button.component";
-import { R2AssetsService } from '../services/r2-assets.service';
+import { ButtonComponent } from "../../buttons/primary-button/button.component";
+import { R2AssetsService } from '../../services/r2-assets.service';
 
 @Component({
   selector: 'app-hero',

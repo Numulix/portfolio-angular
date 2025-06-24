@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { WorkExperience } from '../../consts/experience';
+import { WorkExperience } from '../../../consts/experience';
 
 @Component({
   selector: 'app-experience',
