@@ -14,6 +14,4 @@ export class ButtonComponent {
   @Input() label: string = '';
   @Input() icon: string = '';
   @Input() classes: string = '';
-
-
 }
