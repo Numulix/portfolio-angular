@@ -5,5 +5,12 @@
         "publishedAt": "23-06-2025",
         "tags": ["discord", "typescript", "system-design"],
         "summary": "Being tired of scalpers and missing restocks, I built a Discord bot that watches and notifies me of Pokemon TCG restocks."
+    },
+    {
+        "title": "I Built a Bot to Watch For Me, But Then My Friends Wanted In",
+        "slug": "pokemon-tcg-scraper-2",
+        "publishedAt": "27-06-2025",
+        "tags": ["discord", "typescript", "system-design"],
+        "summary": "After building a bot to track Pokemon TCG restocks, I expanded it to include my friends, enhancing its functionality and reach."
     }
 ]
