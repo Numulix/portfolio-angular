@@ -36,7 +36,12 @@
             ],
             "allowedCommonJsDependencies": [
               "front-matter"
-            ]
+            ],
+            "server": "src/main.server.ts",
+            "prerender": false,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {

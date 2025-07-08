@@ -93,7 +93,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, OnDestroy {
     };
 
     this._document.addEventListener('visibilitychange', this._visibilityChangeHandler);
-    window.addEventListener('load', this._loadHandler);
+    this._document.defaultView?.addEventListener('load', this._loadHandler);
   }
 
   ngOnDestroy(): void {
@@ -101,7 +101,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, OnDestroy {
       this._document.removeEventListener('visibilitychange', this._visibilityChangeHandler);
     }
     if (this._loadHandler) {
-      window.removeEventListener('load', this._loadHandler);
+      this._document.defaultView?.removeEventListener('load', this._loadHandler);
     }
     if (this._initTimeout) {
       clearTimeout(this._initTimeout);
