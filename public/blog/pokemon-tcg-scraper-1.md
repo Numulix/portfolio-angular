@@ -24,7 +24,7 @@ The plan was to have a script that could answer the simple question: _"Is there 
 
 Coming from a structured background with Angular, I believe in planning an application's architecture before writing code. Even for a personal project, this helps create a maintainable and scalable foundation. I sketched out a simple mind map to visualize the components.
 
-![Mindmap](/blog/images/diagram.png)
+![Mindmap](/blog/images/diagram.webp)
 
 My initial design, all in TypeScript, was based on a few core principles:
 
@@ -56,6 +56,6 @@ After refactoring the scraper to use Playwright, I ran the pipeline. I had it ch
 
 A moment later, a notification popped up in my private bot testing server. It worked!
 
-![First notification](/blog/images/first-notification.png)
+![First notification](/blog/images/first-notification.webp)
 
 This was the end of the first phase. I had a working, automated scraper bot that solved my core problem. It was still a simple script, and it wasn't user-friendly or configurable. But it was a success and a fantastic foundation to build upon.
