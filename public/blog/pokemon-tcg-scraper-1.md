@@ -1,3 +1,8 @@
+---
+title: I Was Tired of Missing Pokemon Card Restocks, so I Built a Bot to Watch For Me
+summary: Being tired of scalpers and missing restocks, I built a Discord bot that watches and notifies me of Pokemon TCG restocks.
+---
+
 # I Was Tired of Missing Pokemon Card Restocks, so I Built a Bot to Watch For Me
 
 _(Written June 23, 2025)_

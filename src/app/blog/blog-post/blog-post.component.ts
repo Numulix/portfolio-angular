@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Meta, Title } from "@angular/platform-browser";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import fm from "front-matter";
 import { MarkdownComponent } from "ngx-markdown";
@@ -21,7 +22,9 @@ export class BlogPostComponent implements OnInit {
 
     constructor(
         private _route: ActivatedRoute,
-        private _http: HttpClient
+        private _http: HttpClient,
+        private _titleService: Title,
+        private _metaService: Meta
     ) { }
     
     ngOnInit(): void {
@@ -32,6 +35,12 @@ export class BlogPostComponent implements OnInit {
                 const parsedContent: any = fm(data);
                 this.postAttributes = parsedContent.attributes;
                 this.postContent = parsedContent.body;
+
+                this._titleService.setTitle(`Blog | ${this.postAttributes['title']}`)
+                this._metaService.updateTag({
+                    name: 'summary',
+                    content: this.postAttributes['summary']
+                })
             })
     }
 }

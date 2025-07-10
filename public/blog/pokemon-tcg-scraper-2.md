@@ -1,3 +1,8 @@
+---
+title: I Built a Bot to Watch For Me, But Then My Friends Wanted In
+summary: After building a bot to track Pokemon TCG restocks, I expanded it to include my friends, enhancing its functionality and reach.
+---
+
 # I Built a Bot to Watch For Me, But Then My Friends Wanted In
 
 _(Written, June 27, 2025)_
