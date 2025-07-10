@@ -126,6 +126,9 @@ export class NavbarComponent implements AfterViewInit, OnInit, OnDestroy {
       // Initial positioning after view init
       this._initTimeout = setTimeout(() => {
         this._findActiveElement();
+        if (this.currentActiveEl) {
+          this.currentActiveEl.setAttribute('aria-current', 'page');
+        }
         this._initActiveBox();
       }, 0);
 
@@ -141,8 +144,10 @@ export class NavbarComponent implements AfterViewInit, OnInit, OnDestroy {
       if (target instanceof HTMLAnchorElement && target !== this.lastActiveEl) {
         if (this.lastActiveEl) {
           this.lastActiveEl.classList.remove('active');
+          this.lastActiveEl.removeAttribute('aria-current');
         }
         target.classList.add('active');
+        target.setAttribute('aria-current', 'page');
         this.lastActiveEl = target;
         this.currentActiveEl = target;
         this._initActiveBox();
