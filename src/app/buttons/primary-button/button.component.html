@@ -1,5 +1,5 @@
 @if (href) {
-    <a [href]="href" [target]="target" [class]="'btn btn-' + buttonType + ' ' + classes">
+    <a [href]="href" [target]="target" [class]="'btn btn-' + buttonType + ' ' + classes" [attr.aria-label]="label">
         {{ label }}
 
         @if (icon) {
@@ -9,7 +9,7 @@
         }
     </a>
 } @else {
-    <button [class]="'btn btn-' + buttonType + ' ' + classes">
+    <button [class]="'btn btn-' + buttonType + ' ' + classes" [attr.aria-label]="label">
         {{ label }}
 
         @if (icon) {
