@@ -3,7 +3,7 @@
   publish = "dist/portfolio/browser"
 
 [functions]
-  directory = "dist/portfolio/server"
+  directory = "netlify-functions"
   node_bundler = "esbuild"
 
 [[redirects]]
