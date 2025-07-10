@@ -33,7 +33,7 @@ The first priority was to let server administrators control where the notificati
 
 This was the first major architectural change. I had to create a `ServerConfigManager` that would save these settings to a persistent JSON file, mapping a Server ID to a Channel ID. Now, the bot could manage dozens of servers, each with their own unique notification channel.
 
-![Register command](/blog/images/register-command.png)
+![Register command](/blog/images/register-command.webp)
 
 ## Solving the ping problem: The reaction role system
 
@@ -52,10 +52,10 @@ I used the `@On("guildCreate")` event decorator to trigger a sequence of actions
 
 Finally, I created event handlers for `messageReactionAdd` and `messageReactionRemove`. Whenever the users clicks the 🎉 reaction on that specific welcome message, the bot automatically assigns them the `@PTCG Notify` role. If they remove their reaction, the role is removed. It's a completely self-service, user-friendly system.
 
-![Welcome message](/blog/images/welcome-message.png)
+![Welcome message](/blog/images/welcome-message.webp)
 
 ## The result: A True "Bot"
 
 With these changes, the project had transformed. It was no longer a personal script but a genuine, sharable Discord bot. It could join any server, allow users to opt-in to notifications, and give administrators control over its behavior. The notification now respected the community by pinging a specific role instead of `@everyone`.
 
-![alt text](/blog/images/ping-example.png)
+![alt text](/blog/images/ping-example.webp)

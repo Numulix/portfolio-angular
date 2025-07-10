@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Inject, Input, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { navItems } from '../../consts/navItems';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +16,9 @@ export class NavbarComponent implements AfterViewInit, OnInit, OnDestroy {
 
   @HostListener('window:resize')
   onResize() {
-    this._debouncedInit();
+    if (isPlatformBrowser(this.platformId)) {
+      this._debouncedInit();
+    }
   }
 
   currentActiveEl: any = null;
@@ -30,109 +32,122 @@ export class NavbarComponent implements AfterViewInit, OnInit, OnDestroy {
   private _resizeTimeout: any = null;
 
   private _debouncedInit(): void {
-    if (this._resizeTimeout) {
-      clearTimeout(this._resizeTimeout);
+    if (isPlatformBrowser(this.platformId)) {
+      if (this._resizeTimeout) {
+        clearTimeout(this._resizeTimeout);
+      }
+      this._resizeTimeout = setTimeout(() => {
+        this._findActiveElement();
+        this._initActiveBox();
+      }, 100);
     }
-    this._resizeTimeout = setTimeout(() => {
-      this._findActiveElement();
-      this._initActiveBox();
-    }, 100);
   }
 
   private _initActiveBox(): void {
-    if (!this.activeBox?.nativeElement) return;
+    if (isPlatformBrowser(this.platformId)) {
+      if (!this.activeBox?.nativeElement) return;
 
-    if (this.currentActiveEl) {
-      // Force a reflow to ensure accurate measurements
-      this.currentActiveEl.offsetHeight;
-      
-      requestAnimationFrame(() => {
-        try {
-          const rect = this.currentActiveEl.getBoundingClientRect();
-          const parentRect = this.currentActiveEl.parentElement?.getBoundingClientRect();
-          
-          if (parentRect) {
-            this.activeBox.nativeElement.style.top = `${rect.top - parentRect.top}px`;
-            this.activeBox.nativeElement.style.left = `${rect.left - parentRect.left}px`;
-            this.activeBox.nativeElement.style.width = `${rect.width}px`;
-            this.activeBox.nativeElement.style.height = `${rect.height}px`;
+      if (this.currentActiveEl) {
+        // Force a reflow to ensure accurate measurements
+        this.currentActiveEl.offsetHeight;
+        
+        requestAnimationFrame(() => {
+          try {
+            this.activeBox.nativeElement.style.top = `${this.currentActiveEl.offsetTop}px`;
+            this.activeBox.nativeElement.style.left = `${this.currentActiveEl.offsetLeft}px`;
+            this.activeBox.nativeElement.style.width = `${this.currentActiveEl.offsetWidth}px`;
+            this.activeBox.nativeElement.style.height = `${this.currentActiveEl.offsetHeight}px`;
             this.activeBox.nativeElement.style.opacity = '1';
+          } catch (error) {
+            console.error('Error positioning active box:', error);
           }
-        } catch (error) {
-          console.error('Error positioning active box:', error);
-        }
-      });
-    } else {
-      this.activeBox.nativeElement.style.opacity = '0';
+        });
+      } else {
+        this.activeBox.nativeElement.style.opacity = '0';
+      }
     }
   }
 
   private _findActiveElement(): void {
-    try {
-      const activeElements = this._document.getElementsByClassName('active');
-      this.currentActiveEl = activeElements[1] || activeElements[0] || null;
-      this.lastActiveEl = this.currentActiveEl;
-    } catch (error) {
-      console.error('Error finding active element:', error);
-      this.currentActiveEl = null;
-      this.lastActiveEl = null;
+    if (isPlatformBrowser(this.platformId)) {
+      try {
+        const activeElements = this._document.getElementsByClassName('active');
+        this.currentActiveEl = activeElements[1] || activeElements[0] || null;
+        this.lastActiveEl = this.currentActiveEl;
+      } catch (error) {
+        console.error('Error finding active element:', error);
+        this.currentActiveEl = null;
+        this.lastActiveEl = null;
+      }
     }
   }
 
-  constructor(@Inject(DOCUMENT) private _document: Document) {}
+  constructor(
+    @Inject(DOCUMENT) private _document: Document,
+    @Inject(PLATFORM_ID) private platformId: object
+  ) {}
 
   ngOnInit(): void {
-    this._visibilityChangeHandler = () => {
-      if (this._document.visibilityState === 'visible') {
+    if (isPlatformBrowser(this.platformId)) {
+      this._visibilityChangeHandler = () => {
+        if (this._document.visibilityState === 'visible') {
+          this._debouncedInit();
+        }
+      };
+
+      this._loadHandler = () => {
         this._debouncedInit();
-      }
-    };
+      };
 
-    this._loadHandler = () => {
-      this._debouncedInit();
-    };
-
-    this._document.addEventListener('visibilitychange', this._visibilityChangeHandler);
-    window.addEventListener('load', this._loadHandler);
+      this._document.addEventListener('visibilitychange', this._visibilityChangeHandler);
+      this._document.defaultView?.addEventListener('load', this._loadHandler);
+    }
   }
 
   ngOnDestroy(): void {
-    if (this._visibilityChangeHandler) {
-      this._document.removeEventListener('visibilitychange', this._visibilityChangeHandler);
-    }
-    if (this._loadHandler) {
-      window.removeEventListener('load', this._loadHandler);
-    }
-    if (this._initTimeout) {
-      clearTimeout(this._initTimeout);
-    }
-    if (this._resizeTimeout) {
-      clearTimeout(this._resizeTimeout);
+    if (isPlatformBrowser(this.platformId)) {
+      if (this._visibilityChangeHandler) {
+        this._document.removeEventListener('visibilitychange', this._visibilityChangeHandler);
+      }
+      if (this._loadHandler) {
+        this._document.defaultView?.removeEventListener('load', this._loadHandler);
+      }
+      if (this._initTimeout) {
+        clearTimeout(this._initTimeout);
+      }
+      if (this._resizeTimeout) {
+        clearTimeout(this._resizeTimeout);
+      }
     }
   }
 
   ngAfterViewInit(): void {
-    // Initial positioning after view init
-    this._initTimeout = setTimeout(() => {
-      this._findActiveElement();
-      this._initActiveBox();
-    }, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      // Initial positioning after view init
+      this._initTimeout = setTimeout(() => {
+        this._findActiveElement();
+        this._initActiveBox();
+      }, 0);
 
-    // Backup positioning after everything is loaded
-    if (document.readyState === 'complete') {
-      this._debouncedInit();
+      // Backup positioning after everything is loaded
+      if (this._document.readyState === 'complete') {
+        this._debouncedInit();
+      }
     }
   }
 
   activeCurrentLink(target: EventTarget | null): void {
-    if (target instanceof HTMLAnchorElement && target !== this.lastActiveEl) {
-      if (this.lastActiveEl) {
-        this.lastActiveEl.classList.remove('active');
+    if (isPlatformBrowser(this.platformId)) {
+      if (target instanceof HTMLAnchorElement && target !== this.lastActiveEl) {
+        if (this.lastActiveEl) {
+          this.lastActiveEl.classList.remove('active');
+        }
+        target.classList.add('active');
+        this.lastActiveEl = target;
+        this.currentActiveEl = target;
+        this._initActiveBox();
       }
-      target.classList.add('active');
-      this.lastActiveEl = target;
-      this.currentActiveEl = target;
-      this._initActiveBox();
     }
   }
 }
+
