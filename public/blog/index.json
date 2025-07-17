@@ -12,5 +12,12 @@
         "publishedAt": "27-06-2025",
         "tags": ["discord", "typescript", "system-design"],
         "summary": "After building a bot to track Pokemon TCG restocks, I expanded it to include my friends, enhancing its functionality and reach."
+    },
+    {
+        "title": "Angular Portfolio Performance Glow Up",
+        "slug": "angular-portfolio-glow-up",
+        "publishedAt": "11-07-2025",
+        "tags": ["angular", "seo", "pnpm", "a11y"],
+        "summary": "I made some major tweaks to my portfolio to increase the scores on my Lighthouse reports"
     }
 ]
