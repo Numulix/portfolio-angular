@@ -45,4 +45,24 @@ export const skills: SkillItem[] = [
         icon: "/icons/tailwindcss.svg",
         description: "Utility-First"
     },
+    {
+        name: "Vue.js",
+        icon: "/icons/vue.svg",
+        description: "Framework"
+    },
+    {
+        name: "Vite",
+        icon: "/icons/vite.svg",
+        description: "Build Tool"
+    },
+    {
+        name: "Cypress",
+        icon: "/icons/cypress.svg",
+        description: "Testing"
+    },
+    {
+        name: "Nest.js",
+        icon: "/icons/nestjs.svg",
+        description: "Backend"
+    },
 ]

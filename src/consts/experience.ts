@@ -7,7 +7,13 @@ interface WorkExperienceItem {
 
 export const WorkExperience: WorkExperienceItem[] = [
     {
-        time: 'March 2022 - Current',
+        time: 'September 2025 - February 2026',
+        company: 'LotusFlare',
+        position: 'Frontend Engineer',
+        description: 'At LotusFlare, I worked on a Vue.js-based portal for managing TM Forum-aligned telecommunications entities, including Application Owners, Applications, and Channel Partners. My responsibilities included maintaining and extending existing platform functionality, as well as architecting and developing a unified page that consolidated key information for a selected entity. I collaborated closely with backend engineers to define REST API contracts and wrote unit tests to ensure the reliability and correctness of core components.'
+    },
+    {
+        time: 'March 2022 - May 2025',
         company: 'Seven Bridges / Velsera',
         position: 'Associate Frontend Software Engineer',
         description: 'From the beginning of my tenure at the company, I was a member of the Computation team. My responsibilities included enhancing the functionality of several Angular applications, as well as developing and maintaining existing code within the legacy stack, which utilized Backbone.js and Marionette.js. Furthermore, I actively participated in various engineering initiatives, such as the migration to a microfrontend architecture and style decoupling, which broadened my understanding of web development principles and practices.'
