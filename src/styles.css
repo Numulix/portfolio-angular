@@ -3,130 +3,274 @@
 @plugin "tailwind-scrollbar";
 
 @theme {
-    --font-sans: "Interim", sans-serif;
-    --color-nyanza: #EAF9DD;
-    --color-kombu-green: #4C5D41;
-    --color-charcoal-green: #314131;
-    --color-kelly-green: #239A36;
-    --color-forest-green: #1F6F25;
-    --color-dark-charcoal-green: #304030;
-    --color-eerie-black: #181E18;
-    --color-sage-green: #98B397;
-    --color-olive-drab: #4C5C40;
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "Plus Jakarta Sans", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --font-sans: "Plus Jakarta Sans", sans-serif;
+
+    --color-nb-cream: #FDFBF7;
+    --color-nb-yellow: #FFE600;
+    --color-nb-yellow-light: #FFF677;
+    --color-nb-pink: #FFB8D2;
+    --color-nb-mint: #A7F3D0;
+    --color-nb-green: #4ADE80;
+    --color-nb-purple: #DDD6FE;
+    --color-nb-blue: #BAE6FD;
+    --color-nb-coral: #FECDD3;
+    --color-nb-orange: #FED7AA;
+    --color-nb-black: #111111;
+    --color-nb-gray: #F4F3ED;
+
+    --shadow-nb-sm: 2px 2px 0px #000000;
+    --shadow-nb: 4px 4px 0px #000000;
+    --shadow-nb-lg: 6px 6px 0px #000000;
+    --shadow-nb-xl: 8px 8px 0px #000000;
+
+    /* Legacy compatibility tokens */
+    --color-nyanza: #111111;
+    --color-kombu-green: #FFFFFF;
+    --color-charcoal-green: #FFFFFF;
+    --color-kelly-green: #FFE600;
+    --color-forest-green: #FFF677;
+    --color-dark-charcoal-green: #F4F3ED;
+    --color-eerie-black: #F8F6F0;
+    --color-sage-green: #111111;
+    --color-olive-drab: #111111;
 }
 
 /* Base */
-
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    @apply bg-eerie-black text-nyanza;
+    background-color: #F8F6F0;
+    background-image: radial-gradient(#111111 0.75px, transparent 0.75px);
+    background-size: 20px 20px;
+    color: #111111;
+    font-family: var(--font-body);
 }
 
-/* Components */
-
-.menu-btn {
-    @apply w-10 h-10 grid place-items-center bg-kelly-green/10 rounded-xl ring-inset ring-1 ring-kelly-green/[0.02] backdrop-blur-2xl hover:bg-kelly-green/15 transition-[transform,background-color] active:scale-95
+::selection {
+    background-color: #FFE600;
+    color: #000000;
 }
 
-.navbar {
-    @apply absolute top-full mt-2 right-0 min-w-40 p-2 bg-kelly-green/10 rounded-2xl ring-inset ring-1 ring-kelly-green/5 scale-90 isolate blur-sm opacity-0 invisible transition-[opacity,transform,filter] md:relative md:flex md:items-center md:mt-0 md:opacity-100 md:blur-none md:visible md:scale-100 backdrop-blur-2xl
+/* Tactile Neo-Brutalist Physics */
+.nb-box {
+    border: 3px solid #111111;
+    box-shadow: 4px 4px 0px #000000;
+    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.navbar.active {
-    @apply opacity-100 scale-100 visible blur-none
+.nb-box-hover {
+    cursor: pointer;
+    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nb-box-hover:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000000;
+}
+.nb-box-hover:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px #000000;
 }
 
-.nav-link {
-    @apply grid items-center h-9 px-4 text-sm font-medium tracking-wide text-nyanza/50 hover:text-nyanza transition-colors transition-transform duration-150 ease-out md:hover:-translate-y-1
+/* Tactile Buttons with Press-and-Lift motion */
+.nb-btn {
+    border: 3px solid #111111;
+    box-shadow: 4px 4px 0px #000000;
+    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+.nb-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000000;
+}
+.nb-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px #000000;
 }
 
-.nav-link.active {
-    @apply text-nyanza duration-500
+/* Work Tools / Tech Skill Cards with Alternating Slight Tilts */
+.tech-card {
+    border: 3px solid #111111;
+    box-shadow: 4px 4px 0px #000000;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+}
+.tech-card:nth-child(odd):hover {
+    transform: translateY(-4px) rotate(-1.5deg) scale(1.02);
+    box-shadow: 6px 6px 0px #000000;
+}
+.tech-card:nth-child(even):hover {
+    transform: translateY(-4px) rotate(1.5deg) scale(1.02);
+    box-shadow: 6px 6px 0px #000000;
 }
 
-.navbar .active-box {
-    @apply absolute top-2 left-2 right-2 h-9 bg-kelly-green rounded-lg -z-10 transition-[top,left] duration-500
+/* Project Cards Interactive Lifting & Zoom */
+.project-card {
+    border: 3px solid #111111;
+    box-shadow: 5px 5px 0px #111111;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 8px 8px 0px #000000;
+}
+.project-card .img-preview img {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-card:hover .img-preview img {
+    transform: scale(1.05);
+}
+.project-card .action-link .material-symbols-outlined,
+.project-card .action-link .material-symbols-rounded {
+    transition: transform 0.15s ease;
+}
+.project-card .action-link:hover .material-symbols-outlined,
+.project-card .action-link:hover .material-symbols-rounded {
+    transform: translate(2px, -2px);
 }
 
-.btn {
-    @apply max-w-max h-9 flex items-center gap-2 px-4 rounded-xl font-medium text-sm ring-1 ring-olive-drab ring-inset transition-[background-color] cursor-pointer
+/* Stat Blocks Playful Pop & Rotation */
+.stat-card-1 {
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stat-card-1:hover {
+    transform: translateY(-3px) rotate(-1.5deg);
+    box-shadow: 6px 6px 0px #000;
+}
+.stat-card-2 {
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stat-card-2:hover {
+    transform: translateY(-3px) rotate(1.5deg);
+    box-shadow: 6px 6px 0px #000;
+}
+.stat-card-3 {
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stat-card-3:hover {
+    transform: translateY(-3px) rotate(-1deg);
+    box-shadow: 6px 6px 0px #000;
 }
 
-.btn-secondary {
-    @apply bg-kelly-green text-olive-drab active:bg-kelly-green/80
+/* Avatar Card Interactive Tilt */
+.avatar-interactive {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.avatar-interactive:hover {
+    transform: translateY(-4px) rotate(0.8deg);
+    box-shadow: 8px 8px 0px #000;
 }
 
-.btn .material-symbols-rounded {
-    @apply text-[18px]
+/* Experience Cards Hover Lift */
+.experience-card {
+    border: 3px solid #111111;
+    box-shadow: 5px 5px 0px #111111;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.experience-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 7px 7px 0px #000000;
 }
 
-.btn:has(.material-symbols-rounded) {
-    @apply pr-3    
+/* High-Contrast Neo-Brutalist Form Inputs */
+.nb-input {
+    border: 3px solid #111111;
+    box-shadow: 3px 3px 0px #000000;
+    transition: all 0.12s ease-in-out;
+}
+.nb-input:focus {
+    outline: none;
+    background-color: #ffffff !important;
+    border-color: #000000 !important;
+    box-shadow: 4px 4px 0px #000000 !important;
+    transform: translate(-1px, -1px);
 }
 
-.btn-primary {
-    @apply h-11 bg-kelly-green text-nyanza hover:bg-forest-green active:bg-kelly-green
+/* Infinite Marquee Track Animation */
+@keyframes marquee {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 0, 0);
+    }
 }
 
-.btn-outline {
-    @apply h-11 bg-kombu-green hover:bg-kombu-green/50 active:bg-kombu-green
+.marquee-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    user-select: none;
 }
 
-/* Typography */
-.headline-1,
-.headline-2 {
-    @apply max-w-max;
-    background: -webkit-linear-gradient(0deg, #fafafa, #a1a1aa);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    @apply transition-all duration-300 ease-in-out lg:hover:tracking-wide;
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 26s linear infinite;
+    will-change: transform;
 }
 
-.headline-1 {
-    @apply text-5xl leading-tight font-semibold lg:text-[55px] lg:leading-[1.15];
+.marquee-wrapper:hover .marquee-track {
+    animation-play-state: paused;
 }
 
-.headline-2 {
-    @apply text-3xl lg:text-4xl lg:leading-tight font-semibold;
+.ticker-item {
+    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.ticker-item:hover {
+    transform: translateY(-2px) scale(1.05);
 }
 
-.title-1 {
-    @apply text-[22px] font-normal
-}
-
-.label {
-    @apply block text-nyanza text-sm font-normal mb-2
-}
-
-.text-field {
-    @apply block outline-none w-full px-3 py-3 text-sm text-eerie-black bg-nyanza rounded-xl ring-1 ring-inset ring-transparent transition-shadow hover:ring-forest-green focus:ring-kelly-green focus:ring-2
-}
-
-.text-field::placeholder {
-    @apply text-olive-drab
-}
-
-/* Utilities */
+/* Material symbols */
+.material-symbols-outlined,
 .material-symbols-rounded {
-    @apply w-[1em] h-[1em] overflow-hidden;
-    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
 }
 
+/* Container */
 .container {
-    @apply px-4 mx-auto lg:px-8 xl:max-w-6xl
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80rem; /* max-w-7xl */
+}
+@media (min-width: 1024px) {
+    .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 }
 
-.img-box {
-    @apply bg-nyanza overflow-hidden
-}
-
-.img-cover {
-    @apply w-full h-full object-cover
-}
-
-.section {
-    @apply pt-20 lg:pt-32
+/* Accessibility: Prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+        transform: none !important;
+    }
+    .marquee-track {
+        animation: none !important;
+        transform: none !important;
+        width: 100% !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
 }
