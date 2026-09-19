@@ -59,69 +59,62 @@ body {
 /* Tactile Neo-Brutalist Physics */
 .nb-box {
     border: 3px solid #111111;
-    box-shadow: 4px 4px 0px #000000;
+    box-shadow: var(--shadow-nb);
     transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nb-box-hover {
-    cursor: pointer;
-    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.nb-box-hover:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px #000000;
-}
-.nb-box-hover:active {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0px #000000;
-}
-
-/* Tactile Buttons with Press-and-Lift motion */
+.nb-box-hover,
 .nb-btn {
     border: 3px solid #111111;
-    box-shadow: 4px 4px 0px #000000;
+    box-shadow: var(--shadow-nb);
     transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
     user-select: none;
-    display: inline-flex;
-    align-items: center;
     cursor: pointer;
-    font-family: var(--font-display);
-    font-weight: 700;
 }
+.nb-box-hover:hover,
 .nb-btn:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px #000000;
+    box-shadow: var(--shadow-nb-lg);
 }
+.nb-box-hover:active,
 .nb-btn:active {
     transform: translate(2px, 2px);
     box-shadow: 1px 1px 0px #000000;
 }
 
+/* Tactile Buttons */
+.nb-btn {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
 /* Work Tools / Tech Skill Cards with Alternating Slight Tilts */
 .tech-card {
     border: 3px solid #111111;
-    box-shadow: 4px 4px 0px #000000;
+    box-shadow: var(--shadow-nb);
     transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: default;
 }
 .tech-card:nth-child(odd):hover {
     transform: translateY(-4px) rotate(-1.5deg) scale(1.02);
-    box-shadow: 6px 6px 0px #000000;
+    box-shadow: var(--shadow-nb-lg);
 }
 .tech-card:nth-child(even):hover {
     transform: translateY(-4px) rotate(1.5deg) scale(1.02);
-    box-shadow: 6px 6px 0px #000000;
+    box-shadow: var(--shadow-nb-lg);
 }
 
 /* Project Cards Interactive Lifting & Zoom */
 .project-card {
     border: 3px solid #111111;
-    box-shadow: 5px 5px 0px #111111;
+    box-shadow: var(--shadow-nb-lg);
     transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .project-card:hover {
     transform: translateY(-4px);
-    box-shadow: 8px 8px 0px #000000;
+    box-shadow: var(--shadow-nb-xl);
 }
 .project-card .img-preview img {
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -139,59 +132,64 @@ body {
 }
 
 /* Stat Blocks Playful Pop & Rotation */
-.stat-card-1 {
+.stat-card {
+    border: 3px solid #111111;
+    box-shadow: var(--shadow-nb);
     transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-nb-lg);
+}
+.stat-card.tilt-left:hover,
 .stat-card-1:hover {
     transform: translateY(-3px) rotate(-1.5deg);
-    box-shadow: 6px 6px 0px #000;
+    box-shadow: var(--shadow-nb-lg);
 }
-.stat-card-2 {
-    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-}
+.stat-card.tilt-right:hover,
 .stat-card-2:hover {
     transform: translateY(-3px) rotate(1.5deg);
-    box-shadow: 6px 6px 0px #000;
+    box-shadow: var(--shadow-nb-lg);
 }
-.stat-card-3 {
-    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-}
+.stat-card.tilt-slight:hover,
 .stat-card-3:hover {
     transform: translateY(-3px) rotate(-1deg);
-    box-shadow: 6px 6px 0px #000;
+    box-shadow: var(--shadow-nb-lg);
 }
 
 /* Avatar Card Interactive Tilt */
 .avatar-interactive {
+    border: 3px solid #111111;
+    box-shadow: var(--shadow-nb);
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .avatar-interactive:hover {
     transform: translateY(-4px) rotate(0.8deg);
-    box-shadow: 8px 8px 0px #000;
+    box-shadow: var(--shadow-nb-xl);
 }
 
 /* Experience Cards Hover Lift */
 .experience-card {
     border: 3px solid #111111;
-    box-shadow: 5px 5px 0px #111111;
+    box-shadow: var(--shadow-nb);
     transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .experience-card:hover {
     transform: translateY(-3px);
-    box-shadow: 7px 7px 0px #000000;
+    box-shadow: var(--shadow-nb-lg);
 }
 
 /* High-Contrast Neo-Brutalist Form Inputs */
 .nb-input {
     border: 3px solid #111111;
-    box-shadow: 3px 3px 0px #000000;
+    box-shadow: var(--shadow-nb-sm);
     transition: all 0.12s ease-in-out;
 }
 .nb-input:focus {
     outline: none;
-    background-color: #ffffff !important;
+    background-color: #FEF9C3 !important;
     border-color: #000000 !important;
-    box-shadow: 4px 4px 0px #000000 !important;
+    box-shadow: var(--shadow-nb) !important;
     transform: translate(-1px, -1px);
 }
 

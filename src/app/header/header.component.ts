@@ -17,3 +17,4 @@ export class Header {
   }
 
 }
+export { Header as HeaderComponent };

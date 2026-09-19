@@ -1,0 +1,11 @@
+<div [class]="'marquee-wrapper overflow-hidden select-none ' + bgClass + ' ' + borderClass + ' ' + paddingClass + ' ' + classes">
+  <div class="marquee-track" [style.animationDuration]="duration">
+    <div class="flex items-center gap-8 shrink-0 pr-8">
+      <ng-content></ng-content>
+    </div>
+    <!-- Duplicate track for seamless infinite loop -->
+    <div aria-hidden="true" class="flex items-center gap-8 shrink-0 pr-8">
+      <ng-content select="[duplicate], *"></ng-content>
+    </div>
+  </div>
+</div>
