@@ -50,6 +50,18 @@ export const routes: Routes = [
                     title: "Jovan Babić (Numulix) - Neo-Brutalist Portfolio",
                     description: "Mid Frontend Engineer specializing in Angular, React, Next.js & Microfrontends."
                 }
+            },
+            {
+                path: 'blog',
+                loadComponent: () => import('./new-design/blog/new-blog-list.component').then(m => m.NewBlogListComponent),
+                data: {
+                    title: "Blog - Jovan Babić (Numulix) | Neo-Brutalist Dev Journal",
+                    description: "Writing on Frontend Engineering, Bot Automation, and Web Performance."
+                }
+            },
+            {
+                path: 'blog/:slug',
+                loadComponent: () => import('./new-design/blog/blog-post/new-blog-post.component').then(m => m.NewBlogPostComponent)
             }
         ]
     }

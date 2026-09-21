@@ -14,12 +14,15 @@
         Interactive component lab and token showcase matching the Stitch design specifications for Jovan Babić's portfolio.
       </p>
     </div>
-    <div class="flex flex-col sm:flex-row gap-3">
-      <app-nb-button variant="white" routerLink="/" icon="arrow_back" iconPosition="leading">
-        Back to Home
+    <div class="flex flex-wrap gap-2.5">
+      <app-nb-button variant="white" routerLink="/new/home" icon="rocket_launch" iconPosition="leading">
+        New Home
       </app-nb-button>
-      <app-nb-button variant="dark" routerLink="/blog" icon="article">
-        View Blog
+      <app-nb-button variant="mint" routerLink="/new/blog" icon="article" iconPosition="leading">
+        New Blog
+      </app-nb-button>
+      <app-nb-button variant="dark" routerLink="/" icon="arrow_back" iconPosition="leading">
+        Classic Site
       </app-nb-button>
     </div>
   </header>
