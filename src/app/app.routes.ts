@@ -33,5 +33,24 @@ export const routes: Routes = [
         path: 'design-system',
         redirectTo: 'playground',
         pathMatch: 'full'
+    },
+    {
+        path: 'new',
+        loadComponent: () => import('./new-design/layout/new-layout.component').then(m => m.NewLayoutComponent),
+        children: [
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'home'
+            },
+            {
+                path: 'home',
+                loadComponent: () => import('./new-design/home/new-home.component').then(m => m.NewHomeComponent),
+                data: {
+                    title: "Jovan Babić (Numulix) - Neo-Brutalist Portfolio",
+                    description: "Mid Frontend Engineer specializing in Angular, React, Next.js & Microfrontends."
+                }
+            }
+        ]
     }
 ];

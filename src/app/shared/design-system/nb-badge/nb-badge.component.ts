@@ -1,14 +1,19 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-export type BadgeVariant = 'mint' | 'yellow' | 'pink' | 'blue' | 'purple' | 'gray' | 'white' | 'dark';
+export type BadgeVariant = 'mint' | 'yellow' | 'pink' | 'blue' | 'purple' | 'coral' | 'orange' | 'gray' | 'white' | 'dark';
 export type BadgeTilt = 'left' | 'right' | 'none';
 
 @Component({
   selector: 'app-nb-badge',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './nb-badge.component.html'
+  templateUrl: './nb-badge.component.html',
+  styles: [`
+    :host {
+      display: inline-block;
+    }
+  `]
 })
 export class NbBadgeComponent {
   @Input() variant: BadgeVariant = 'mint';
@@ -31,6 +36,10 @@ export class NbBadgeComponent {
         return 'bg-nb-blue text-black';
       case 'purple':
         return 'bg-nb-purple text-black';
+      case 'coral':
+        return 'bg-nb-coral text-black';
+      case 'orange':
+        return 'bg-nb-orange text-black';
       case 'gray':
         return 'bg-nb-gray text-black';
       case 'white':

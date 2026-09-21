@@ -1,0 +1,47 @@
+@if (!isMobile) {
+  <nav class="hidden md:flex items-center gap-2" aria-label="Desktop navigation">
+    @for (item of navItems; track item.label) {
+      @if (item.isRouterLink) {
+        <a
+          [routerLink]="item.link"
+          routerLinkActive="bg-nb-yellow shadow-[2px_2px_0px_#000]"
+          [class]="'nb-btn px-3 py-1.5 bg-white font-display font-bold text-sm ' + item.hoverBg"
+        >
+          {{ item.label }}
+        </a>
+      } @else {
+        <a
+          [href]="item.link"
+          [class]="'nb-btn px-3 py-1.5 bg-white font-display font-bold text-sm ' + item.hoverBg"
+        >
+          {{ item.label }}
+        </a>
+      }
+    }
+  </nav>
+} @else {
+  <nav class="flex flex-col gap-2.5 p-4 font-display font-bold text-base" aria-label="Mobile navigation">
+    @for (item of navItems; track item.label) {
+      @if (item.isRouterLink) {
+        <a
+          [routerLink]="item.link"
+          (click)="onNavClick()"
+          routerLinkActive="bg-nb-yellow shadow-[3px_3px_0px_#000]"
+          [class]="'nb-btn w-full justify-between px-4 py-2.5 bg-white ' + item.hoverBg"
+        >
+          <span>{{ item.label }}</span>
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </a>
+      } @else {
+        <a
+          [href]="item.link"
+          (click)="onNavClick()"
+          [class]="'nb-btn w-full justify-between px-4 py-2.5 bg-white ' + item.hoverBg"
+        >
+          <span>{{ item.label }}</span>
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </a>
+      }
+    }
+  </nav>
+}

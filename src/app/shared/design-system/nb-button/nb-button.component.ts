@@ -2,14 +2,19 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-export type ButtonVariant = 'yellow' | 'mint' | 'pink' | 'purple' | 'blue' | 'white' | 'dark';
+export type ButtonVariant = 'yellow' | 'mint' | 'pink' | 'purple' | 'blue' | 'coral' | 'orange' | 'white' | 'dark';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 @Component({
   selector: 'app-nb-button',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './nb-button.component.html'
+  templateUrl: './nb-button.component.html',
+  styles: [`
+    :host {
+      display: inline-block;
+    }
+  `]
 })
 export class NbButtonComponent {
   @Input() variant: ButtonVariant = 'yellow';
@@ -37,6 +42,10 @@ export class NbButtonComponent {
         return 'bg-nb-purple hover:bg-purple-200 text-black';
       case 'blue':
         return 'bg-nb-blue hover:bg-sky-200 text-black';
+      case 'coral':
+        return 'bg-nb-coral hover:bg-rose-200 text-black';
+      case 'orange':
+        return 'bg-nb-orange hover:bg-amber-200 text-black';
       case 'white':
         return 'bg-white hover:bg-nb-cream text-black';
       case 'dark':

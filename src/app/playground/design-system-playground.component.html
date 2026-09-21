@@ -191,30 +191,24 @@
     <!-- Ticker 1: Top Announcement Style -->
     <div class="space-y-2">
       <span class="font-mono text-xs font-bold uppercase text-black/70">Top Announcement Banner Variant:</span>
-      <app-marquee-ticker bgClass="bg-nb-yellow" borderClass="border-2 border-black" paddingClass="py-2" duration="24s">
-        <span class="font-mono text-xs font-bold uppercase">⚡ AVAILABLE FOR HIRE 2025 // FULL-TIME & CONTRACT</span>
-        <span class="font-mono text-xs">•</span>
-        <span class="font-mono text-xs font-bold uppercase">SPECS: ANGULAR • REACT • NEXT.JS • MICROFRONTENDS</span>
-        <span class="font-mono text-xs">•</span>
-        <span class="font-mono text-xs font-bold uppercase">📍 LOCATION: BELGRADE, RS [44.8125° N, 20.4612° E]</span>
-        <span class="font-mono text-xs">•</span>
-        <span class="inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase">
-          <span class="w-2.5 h-2.5 bg-nb-black rounded-full"></span> STATUS: READY
-        </span>
-      </app-marquee-ticker>
+      <app-marquee-ticker
+        bgClass="bg-nb-yellow"
+        borderClass="border-2 border-black"
+        paddingClass="py-2"
+        duration="24s"
+        [items]="announcementItems"
+      />
     </div>
 
     <!-- Ticker 2: White Arsenal Sticker Style -->
     <div class="space-y-2 pt-2">
-      <span class="font-mono text-xs font-bold uppercase text-black/70">Arsenal Badge Loop Variant:</span>
-      <app-marquee-ticker bgClass="bg-white" borderClass="border-y-[3px] border-black" paddingClass="py-3" duration="28s">
-        <span class="ticker-item gap-2 font-display font-extrabold text-sm uppercase">✦ ANGULAR SPECIALIST</span>
-        <span class="ticker-item gap-2 bg-nb-yellow px-2.5 py-0.5 border border-black shadow-[2px_2px_0px_#000] font-display font-extrabold text-sm uppercase">★ REACT & NEXT.JS</span>
-        <span class="ticker-item gap-2 font-display font-extrabold text-sm uppercase">✦ MICROFRONTEND ARCHITECTURE</span>
-        <span class="ticker-item gap-2 bg-nb-mint px-2.5 py-0.5 border border-black shadow-[2px_2px_0px_#000] font-display font-extrabold text-sm uppercase">★ TAILWIND CSS</span>
-        <span class="ticker-item gap-2 font-display font-extrabold text-sm uppercase">✦ TYPESCRIPT SAFETY</span>
-        <span class="ticker-item gap-2 bg-nb-pink px-2.5 py-0.5 border border-black shadow-[2px_2px_0px_#000] font-display font-extrabold text-sm uppercase">★ GAMER & TCG FAN</span>
-      </app-marquee-ticker>
+      <span class="font-mono text-xs font-bold uppercase text-black/70">Arsenal Badge Loop Variant (Default):</span>
+      <app-marquee-ticker
+        bgClass="bg-white"
+        borderClass="border-y-[3px] border-black"
+        paddingClass="py-3"
+        duration="28s"
+      />
     </div>
   </section>
 

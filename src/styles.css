@@ -56,6 +56,17 @@ body {
     color: #000000;
 }
 
+/* Font Families */
+.font-display {
+    font-family: var(--font-display), "Space Grotesk", sans-serif;
+}
+.font-body {
+    font-family: var(--font-body), "Plus Jakarta Sans", sans-serif;
+}
+.font-mono {
+    font-family: var(--font-mono), "JetBrains Mono", monospace;
+}
+
 /* Tactile Neo-Brutalist Physics */
 .nb-box {
     border: 3px solid #111111;
@@ -184,6 +195,11 @@ body {
     border: 3px solid #111111;
     box-shadow: var(--shadow-nb-sm);
     transition: all 0.12s ease-in-out;
+}
+.nb-input::placeholder {
+    color: #9ca3af;
+    opacity: 1;
+    font-weight: 400;
 }
 .nb-input:focus {
     outline: none;

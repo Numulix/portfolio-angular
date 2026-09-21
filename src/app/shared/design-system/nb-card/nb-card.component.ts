@@ -5,7 +5,12 @@ import { CommonModule } from '@angular/common';
   selector: 'app-nb-card',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './nb-card.component.html'
+  templateUrl: './nb-card.component.html',
+  styles: [`
+    :host {
+      display: block;
+    }
+  `]
 })
 export class NbCardComponent {
   @Input() headerTitle: string = '';

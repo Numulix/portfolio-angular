@@ -14,6 +14,7 @@ import { filter, map, mergeMap } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'portfolio';
+  isLegacyRoute = true;
 
   constructor(
     private _router: Router,
@@ -23,6 +24,13 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this._router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      const url = event.urlAfterRedirects || event.url;
+      this.isLegacyRoute = !url.startsWith('/new') && !url.startsWith('/playground') && !url.startsWith('/design-system');
+    });
+
     this._router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       map(() => this._activatedRoute),

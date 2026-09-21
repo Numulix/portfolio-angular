@@ -8,7 +8,13 @@ export type StatCardTilt = 'left' | 'right' | 'slight' | 'none';
   selector: 'app-stat-card',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './stat-card.component.html'
+  templateUrl: './stat-card.component.html',
+  styles: [`
+    :host {
+      display: block;
+      height: 100%;
+    }
+  `]
 })
 export class StatCardComponent {
   @Input() number: string | number = '';
