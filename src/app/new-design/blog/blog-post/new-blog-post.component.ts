@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Meta, Title } from '@angular/platform-browser';
 import { MarkdownComponent } from 'ngx-markdown';
@@ -41,6 +41,7 @@ export class NewBlogPostComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private http: HttpClient,
     private titleService: Title,
     private metaService: Meta
@@ -51,6 +52,9 @@ export class NewBlogPostComponent implements OnInit {
       this.slug = params.get('slug');
       if (this.slug) {
         this.fetchPost(this.slug);
+      } else {
+        const notFoundUrl = this.router.url.startsWith('/new') ? '/new/404' : '/404';
+        this.router.navigate([notFoundUrl], { replaceUrl: true });
       }
     });
   }
@@ -94,14 +98,17 @@ export class NewBlogPostComponent implements OnInit {
             });
           }
         } catch {
-          this.loadError = true;
+          this.isLoading = false;
+          const notFoundUrl = this.router.url.startsWith('/new') ? '/new/404' : '/404';
+          this.router.navigate([notFoundUrl], { replaceUrl: true });
         } finally {
           this.isLoading = false;
         }
       },
       error: () => {
-        this.loadError = true;
         this.isLoading = false;
+        const notFoundUrl = this.router.url.startsWith('/new') ? '/new/404' : '/404';
+        this.router.navigate([notFoundUrl], { replaceUrl: true });
       }
     });
   }

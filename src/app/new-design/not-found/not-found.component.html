@@ -1,0 +1,58 @@
+<main class="max-w-7xl mx-auto w-full px-4 lg:px-8 py-10 sm:py-16 flex flex-col">
+  <div class="flex flex-col items-center justify-center my-auto min-h-[55vh]">
+    <div class="w-full max-w-2xl border-[3px] border-black bg-white p-6 sm:p-10 lg:p-12 shadow-[8px_8px_0px_#000000] relative overflow-hidden flex flex-col items-center text-center">
+      
+      <!-- Decorative Retro Background Shape -->
+      <div class="absolute -right-12 -top-12 w-40 h-40 bg-nb-yellow rounded-full border-[3px] border-black pointer-events-none opacity-40"></div>
+
+      <!-- Badge System Error Row -->
+      <div class="flex flex-wrap items-center justify-center gap-2.5 mb-4 relative z-10 font-mono">
+        <span class="px-3 py-1 bg-nb-yellow text-black font-bold text-xs uppercase border-2 border-black shadow-[2px_2px_0px_#000] -rotate-2">
+          [ 404: ERROR ]
+        </span>
+        <span class="px-3 py-1 bg-nb-mint text-black font-bold text-xs uppercase border-2 border-black shadow-[2px_2px_0px_#000] rotate-1">
+          NOT_FOUND
+        </span>
+      </div>
+
+      <!-- Massive Neo-Brutalist 404 Numbers -->
+      <div class="relative my-2 select-none z-10">
+        <div class="font-display text-[96px] sm:text-[140px] font-black leading-none tracking-tighter uppercase text-black/10 translate-x-1.5 translate-y-1.5 absolute inset-0 -z-0">
+          404
+        </div>
+        <div class="font-display text-[96px] sm:text-[140px] font-black leading-none tracking-tighter uppercase text-black relative z-10 drop-shadow-[4px_4px_0px_#ffe600]">
+          404
+        </div>
+      </div>
+
+      <!-- Copy Headline & Explanation -->
+      <div class="relative z-10 max-w-lg mb-6">
+        <h1 class="font-display font-extrabold text-2xl sm:text-3xl text-black uppercase tracking-tight mb-2">
+          Page Not Found
+        </h1>
+        <p class="font-body text-sm sm:text-base text-black/75 font-medium leading-relaxed">
+          The page you are looking for doesn't exist or has been moved to another node. Check your URL or return safely to known coordinates.
+        </p>
+      </div>
+
+      <!-- CTA Action Navigation -->
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-6 border-t-[3px] border-black w-full relative z-10 font-display">
+        <a
+          [routerLink]="homeUrl"
+          class="nb-btn px-5 py-2.5 bg-nb-yellow hover:bg-nb-yellow-light font-extrabold text-sm flex items-center gap-2 shadow-[3px_3px_0px_#000]"
+        >
+          <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+          <span>Back to Homepage</span>
+        </a>
+        <a
+          [routerLink]="blogUrl"
+          class="nb-btn px-5 py-2.5 bg-white hover:bg-nb-mint font-extrabold text-sm flex items-center gap-2 shadow-[3px_3px_0px_#000]"
+        >
+          <span>Read Blog</span>
+          <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</main>

@@ -62,7 +62,37 @@ export const routes: Routes = [
             {
                 path: 'blog/:slug',
                 loadComponent: () => import('./new-design/blog/blog-post/new-blog-post.component').then(m => m.NewBlogPostComponent)
+            },
+            {
+                path: '404',
+                loadComponent: () => import('./new-design/not-found/not-found.component').then(m => m.NotFoundComponent),
+                data: {
+                    title: "404 Not Found - Jovan Babić (Numulix)",
+                    description: "The page you are looking for doesn't exist or has been moved."
+                }
+            },
+            {
+                path: '**',
+                redirectTo: '404'
             }
         ]
+    },
+    {
+        path: '404',
+        loadComponent: () => import('./new-design/layout/new-layout.component').then(m => m.NewLayoutComponent),
+        children: [
+            {
+                path: '',
+                loadComponent: () => import('./new-design/not-found/not-found.component').then(m => m.NotFoundComponent),
+                data: {
+                    title: "404 Not Found - Jovan Babić (Numulix)",
+                    description: "The page you are looking for doesn't exist or has been moved."
+                }
+            }
+        ]
+    },
+    {
+        path: '**',
+        redirectTo: '404'
     }
 ];
