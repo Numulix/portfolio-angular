@@ -228,6 +228,7 @@ body {
 
 .marquee-track {
     display: flex;
+    flex-wrap: nowrap;
     width: max-content;
     animation: marquee 26s linear infinite;
     will-change: transform;
@@ -438,22 +439,4 @@ body {
     border: 0;
     border-top: 3px solid #000000;
     margin: 2.5rem 0;
-}
-
-/* Accessibility: Prefers-reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-    *, ::before, ::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-        transform: none !important;
-    }
-    .marquee-track {
-        animation: none !important;
-        transform: none !important;
-        width: 100% !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-    }
 }
