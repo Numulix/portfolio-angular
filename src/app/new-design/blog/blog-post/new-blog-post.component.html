@@ -1,160 +1,71 @@
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full">
   <!-- Back Button Navigation -->
   <div class="mb-8">
-    <a
-      routerLink="/new/blog"
-      class="nb-btn px-4 py-2 bg-white hover:bg-nb-yellow font-mono text-xs font-bold inline-flex items-center gap-2 shadow-[2px_2px_0px_#000]"
-    >
+    <a routerLink="/new/blog"
+      class="nb-btn px-4 py-2 bg-white hover:bg-nb-yellow font-mono text-xs font-bold inline-flex items-center gap-2 shadow-[2px_2px_0px_#000]">
       <span class="material-symbols-outlined text-[16px]">arrow_back</span>
       <span>// BACK TO DEV JOURNAL</span>
     </a>
   </div>
 
   @if (isLoading) {
-    <div class="py-20 text-center font-mono">
-      <div class="inline-block p-6 bg-white border-[3px] border-black shadow-[4px_4px_0px_#000] animate-pulse">
-        <span class="text-sm font-bold">// DECRYPTING TRANSMISSION PAYLOAD...</span>
-      </div>
+  <div class="py-20 text-center font-mono">
+    <div class="inline-block p-6 bg-white border-[3px] border-black shadow-[4px_4px_0px_#000] animate-pulse">
+      <span class="text-sm font-bold">// DECRYPTING ARTICLE PAYLOAD...</span>
     </div>
-  } @else if (loadError) {
-    <div class="p-8 sm:p-12 text-center bg-white border-[3px] border-black shadow-[6px_6px_0px_#000]">
-      <div class="w-12 h-12 bg-nb-pink border-2 border-black mx-auto mb-4 flex items-center justify-center font-mono font-black text-xl shadow-[2px_2px_0px_#000]">
-        404
-      </div>
-      <h2 class="font-display font-black text-2xl mb-2">ARTICLE NOT FOUND</h2>
-      <p class="font-body text-sm text-black/70 mb-6 max-w-md mx-auto">
-        The requested article transmission could not be retrieved from the server archive.
-      </p>
-      <a
-        routerLink="/new/blog"
-        class="nb-btn px-5 py-2.5 bg-nb-yellow hover:bg-nb-yellow-light font-display font-extrabold text-sm"
-      >
-        Return to Blog
-      </a>
-    </div>
+  </div>
   } @else {
-    <!-- Article Header Card -->
-    <header class="nb-box bg-white p-6 sm:p-10 mb-8 border-[3px] border-black shadow-[6px_6px_0px_#000]">
-      <div class="flex flex-wrap items-center gap-2 mb-4 font-mono text-xs font-bold">
-        <span [class]="categoryColor + ' border-2 border-black px-2.5 py-0.5 shadow-[1px_1px_0px_#000]'">
-          {{ categoryLabel }}
-        </span>
-        <span class="bg-nb-mint border-2 border-black px-2.5 py-0.5 shadow-[1px_1px_0px_#000] flex items-center gap-1">
-          <span class="material-symbols-outlined text-[14px]">schedule</span>
-          <span>{{ readTime }} READ</span>
-        </span>
-        @if (postAttributes['publishedAt']) {
-          <span class="bg-nb-cream border-2 border-black px-2.5 py-0.5 text-black/70 flex items-center gap-1">
-            <span class="material-symbols-outlined text-[14px]">calendar_today</span>
-            <span>{{ postAttributes['publishedAt'] }}</span>
-          </span>
-        }
-      </div>
-
-      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-display font-black tracking-tight leading-tight my-4">
-        {{ postAttributes['title'] }}
-      </h1>
-
-      @if (postAttributes['summary']) {
-        <div class="bg-nb-cream border-2 border-black p-4 sm:p-5 font-body text-base font-medium text-black/85 leading-relaxed shadow-[3px_3px_0px_#000] my-6">
-          <div class="font-mono text-xs font-extrabold uppercase text-black/60 mb-1.5">// EXECUTIVE BRIEF</div>
-          <p>{{ postAttributes['summary'] }}</p>
-        </div>
+  <!-- Article Header Card -->
+  <header class="nb-box bg-white p-6 sm:p-10 mb-8 border-[3px] border-black shadow-[6px_6px_0px_#000]">
+    <div class="flex flex-wrap items-center gap-2 mb-4 font-mono text-xs font-bold">
+      <span class="bg-nb-yellow border-2 border-black px-2.5 py-0.5 shadow-[1px_1px_0px_#000]">
+        // DEV JOURNAL ENTRY
+      </span>
+      <span class="bg-nb-mint border-2 border-black px-2.5 py-0.5 shadow-[1px_1px_0px_#000] flex items-center gap-1">
+        <span class="material-symbols-outlined text-[14px]">schedule</span>
+        <span>{{ readTime }} READ</span>
+      </span>
+      @if (postAttributes['publishedAt']) {
+      <span class="bg-nb-cream border-2 border-black px-2.5 py-0.5 text-black/70 flex items-center gap-1">
+        <span class="material-symbols-outlined text-[14px]">calendar_today</span>
+        <span>{{ postAttributes['publishedAt'] }}</span>
+      </span>
       }
-
-      @if (postAttributes['tags'] && postAttributes['tags'].length > 0) {
-        <div class="flex flex-wrap items-center gap-2 pt-4 border-t-2 border-black font-mono text-xs font-bold">
-          <span class="text-black/60">TAGS:</span>
-          @for (tag of postAttributes['tags']; track tag) {
-            <span class="px-2.5 py-0.5 bg-nb-cream border border-black shadow-[1px_1px_0px_#000]">
-              #{{ tag }}
-            </span>
-          }
-        </div>
-      }
-    </header>
-
-    <!-- Article Markdown Content Body -->
-    <article class="nb-box bg-white p-6 sm:p-10 lg:p-12 border-[3px] border-black shadow-[6px_6px_0px_#000] mb-8">
-      <div class="nb-article-content">
-        <markdown [data]="postContent"></markdown>
-      </div>
-    </article>
-
-    <!-- Author Bio & Signoff Card -->
-    <section class="nb-box bg-nb-cream p-6 sm:p-8 border-[3px] border-black shadow-[6px_6px_0px_#000] mb-10">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-        <!-- Avatar Frame -->
-        <div class="relative shrink-0">
-          <div class="w-16 h-16 border-[3px] border-black bg-white overflow-hidden shadow-[3px_3px_0px_#000]">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUyTz_ESvRG5UDc22fvpSYKcyRMneDUnoy8tRvlW6OPK2vSH654lkgru7SbAADGu6XXlWshgjnEFXfViN3E56EiKTygDXnJXnl1jrZ1nyp2GD7ispleHYAI8a7w6E9egkZszB51iLq-eKdgyyWXoVTTlZQVb0zfJ2Iiy02n2lL66Vl04BTml0qw470FU3MDXI5uYsUEzyFU4zAWKkhfslXDYCOuK5_lcSMq0awEaJVwXGPMumSfk1kTA"
-              alt="Jovan Babić"
-              class="w-full h-full object-cover object-top"
-            />
-          </div>
-          <span class="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-black"></span>
-        </div>
-
-        <!-- Bio Content -->
-        <div class="flex-grow">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="font-display font-extrabold text-lg">Jovan Babić</span>
-            <span class="bg-nb-yellow border border-black font-mono text-[10px] font-bold px-1.5 py-0.5 shadow-[1px_1px_0px_#000]">
-              NUMULIX
-            </span>
-          </div>
-          <p class="font-body text-sm font-medium text-black/75 mb-3 leading-relaxed">
-            Frontend Software Engineer at LotusFlare. Building interactive web experiences, microfrontends, and automated Discord bot systems.
-          </p>
-
-          <div class="flex flex-wrap items-center gap-3">
-            <a
-              href="https://github.com/Numulix"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="nb-btn px-2.5 py-1 bg-white hover:bg-nb-yellow font-mono text-xs font-bold shadow-[2px_2px_0px_#000]"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/jovan-babi%C4%87-56530b179/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="nb-btn px-2.5 py-1 bg-white hover:bg-nb-blue font-mono text-xs font-bold shadow-[2px_2px_0px_#000]"
-            >
-              LinkedIn
-            </a>
-            <a
-              routerLink="/new/home"
-              fragment="contact"
-              class="nb-btn px-3 py-1 bg-nb-mint hover:bg-emerald-300 font-mono text-xs font-bold shadow-[2px_2px_0px_#000] ml-auto flex items-center gap-1"
-            >
-              <span>Get in Touch</span>
-              <span class="material-symbols-outlined text-[14px]">send</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Bottom Navigation Actions -->
-    <div class="flex items-center justify-between pb-8">
-      <a
-        routerLink="/new/blog"
-        class="nb-btn px-5 py-2.5 bg-white hover:bg-nb-yellow font-mono text-xs font-bold shadow-[3px_3px_0px_#000] inline-flex items-center gap-2"
-      >
-        <span class="material-symbols-outlined text-[16px]">arrow_back</span>
-        <span>Back to All Articles</span>
-      </a>
-
-      <a
-        routerLink="/new/home"
-        class="nb-btn px-5 py-2.5 bg-nb-yellow hover:bg-nb-yellow-light font-display font-extrabold text-sm shadow-[3px_3px_0px_#000] inline-flex items-center gap-2"
-      >
-        <span>Explore Portfolio</span>
-        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-      </a>
     </div>
+
+    <h1 class="text-2xl sm:text-4xl lg:text-5xl font-display font-black tracking-tight leading-tight my-4">
+      {{ postAttributes['title'] }}
+    </h1>
+
+    @if (postAttributes['summary']) {
+    <div
+      class="bg-nb-cream border-2 border-black p-4 sm:p-5 font-body text-base font-medium text-black/85 leading-relaxed shadow-[3px_3px_0px_#000] mt-6">
+      <div class="font-mono text-xs font-extrabold uppercase text-black/60 mb-1.5">// EXECUTIVE BRIEF</div>
+      <p>{{ postAttributes['summary'] }}</p>
+    </div>
+    }
+  </header>
+
+  <!-- Article Markdown Content Body -->
+  <article class="nb-box bg-white p-6 sm:p-10 lg:p-12 border-[3px] border-black shadow-[6px_6px_0px_#000] mb-8">
+    <div class="nb-article-content">
+      <markdown [data]="postContent"></markdown>
+    </div>
+  </article>
+
+  <!-- Bottom Navigation Actions -->
+  <div class="flex items-center justify-between pb-8">
+    <a routerLink="/new/blog"
+      class="nb-btn px-5 py-2.5 bg-white hover:bg-nb-yellow font-mono text-xs font-bold shadow-[3px_3px_0px_#000] inline-flex items-center gap-2">
+      <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+      <span>Back to All Articles</span>
+    </a>
+
+    <a routerLink="/new/home"
+      class="nb-btn px-5 py-2.5 bg-nb-yellow hover:bg-nb-yellow-light font-display font-extrabold text-sm shadow-[3px_3px_0px_#000] inline-flex items-center gap-2">
+      <span>Explore Portfolio</span>
+      <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+    </a>
+  </div>
   }
 </div>

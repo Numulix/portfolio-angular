@@ -3,18 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { NbBadgeComponent, NbButtonComponent, NbCardComponent } from '../../shared/design-system';
 import { PostMetadata } from '../../../consts/types';
-
-export interface EnrichedPost extends PostMetadata {
-  category: 'pokemon' | 'angular' | 'general';
-  categoryLabel: string;
-  categoryColor: string;
-  readTime: string;
-  isSpotlight?: boolean;
-  highlightTag: string;
-  techTags: string[];
-}
 
 @Component({
   selector: 'app-new-blog-list',
@@ -22,10 +11,7 @@ export interface EnrichedPost extends PostMetadata {
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
-    NbBadgeComponent,
-    NbButtonComponent,
-    NbCardComponent
+    FormsModule
   ],
   templateUrl: './new-blog-list.component.html',
   styles: [`
@@ -36,19 +22,25 @@ export interface EnrichedPost extends PostMetadata {
   `]
 })
 export class NewBlogListComponent implements OnInit {
-  allPosts: EnrichedPost[] = [];
-  filteredPosts: EnrichedPost[] = [];
+  allPosts: PostMetadata[] = [];
+  filteredPosts: PostMetadata[] = [];
   searchQuery = '';
-  activeCategory: 'all' | 'pokemon' | 'angular' | 'fullstack' = 'all';
   sortOrder: 'newest' | 'oldest' = 'newest';
   isLoading = true;
+
+  private readonly buttonColors = [
+    'bg-nb-yellow hover:bg-nb-yellow-light',
+    'bg-nb-mint hover:bg-emerald-300',
+    'bg-nb-blue hover:bg-sky-300',
+    'bg-nb-pink hover:bg-pink-300'
+  ];
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.http.get<PostMetadata[]>('/blog/index.json').subscribe({
       next: (posts) => {
-        this.allPosts = posts.map((post, index) => this.enrichPost(post, index));
+        this.allPosts = posts || [];
         this.applyFilters();
         this.isLoading = false;
       },
@@ -56,79 +48,6 @@ export class NewBlogListComponent implements OnInit {
         this.isLoading = false;
       }
     });
-  }
-
-  private enrichPost(post: PostMetadata, index: number): EnrichedPost {
-    const slug = post.slug;
-    if (slug.includes('pokemon-tcg-scraper-1')) {
-      return {
-        ...post,
-        category: 'pokemon',
-        categoryLabel: 'DISCORD AUTOMATION & SCRAPING',
-        categoryColor: 'bg-nb-pink',
-        readTime: '6 MIN',
-        isSpotlight: true,
-        highlightTag: 'AUTOMATION',
-        techTags: ['Discord API', 'Node.js', 'TypeScript', 'Cheerio / Scraper', 'PokéSerbia']
-      };
-    } else if (slug.includes('pokemon-tcg-scraper-2')) {
-      return {
-        ...post,
-        category: 'pokemon',
-        categoryLabel: 'BOT ARCHITECTURE',
-        categoryColor: 'bg-nb-blue',
-        readTime: '5 MIN',
-        isSpotlight: false,
-        highlightTag: 'AUTOMATION',
-        techTags: ['Node.js', 'Discord Bot', 'Cloudflare Workers', 'Webhooks']
-      };
-    } else if (slug.includes('angular-portfolio')) {
-      return {
-        ...post,
-        category: 'angular',
-        categoryLabel: 'ANGULAR & WEB VITALS',
-        categoryColor: 'bg-nb-mint',
-        readTime: '8 MIN',
-        isSpotlight: false,
-        highlightTag: 'PERFORMANCE',
-        techTags: ['Angular 18', 'Lighthouse 100', 'SSR / Hydration', 'Tailwind CSS']
-      };
-    }
-
-    // Default fallback
-    return {
-      ...post,
-      category: 'general',
-      categoryLabel: 'ENGINEERING LOG',
-      categoryColor: 'bg-nb-yellow',
-      readTime: '5 MIN',
-      isSpotlight: index === 0,
-      highlightTag: 'FRONTEND',
-      techTags: post.tags || []
-    };
-  }
-
-  get pokemonCount(): number {
-    return this.allPosts.filter(p => p.category === 'pokemon').length;
-  }
-
-  get angularCount(): number {
-    return this.allPosts.filter(p => p.category === 'angular').length;
-  }
-
-  get spotlightPost(): EnrichedPost | undefined {
-    return this.filteredPosts.find(p => p.isSpotlight) || this.filteredPosts[0];
-  }
-
-  get regularPosts(): EnrichedPost[] {
-    const spotlight = this.spotlightPost;
-    if (!spotlight) return this.filteredPosts;
-    return this.filteredPosts.filter(p => p.slug !== spotlight.slug);
-  }
-
-  setCategory(cat: 'all' | 'pokemon' | 'angular' | 'fullstack'): void {
-    this.activeCategory = cat;
-    this.applyFilters();
   }
 
   toggleSort(): void {
@@ -142,34 +61,28 @@ export class NewBlogListComponent implements OnInit {
 
   resetFilters(): void {
     this.searchQuery = '';
-    this.activeCategory = 'all';
     this.applyFilters();
+  }
+
+  formatNumber(index: number): string {
+    return (index + 1).toString().padStart(2, '0');
+  }
+
+  getButtonColor(index: number): string {
+    return this.buttonColors[index % this.buttonColors.length];
   }
 
   private applyFilters(): void {
     let result = [...this.allPosts];
 
-    // Category filter
-    if (this.activeCategory === 'pokemon') {
-      result = result.filter(p => p.category === 'pokemon');
-    } else if (this.activeCategory === 'angular') {
-      result = result.filter(p => p.category === 'angular');
-    } else if (this.activeCategory === 'fullstack') {
-      result = result.filter(p => p.tags.some(t => ['nextjs', 'fullstack', 'react'].includes(t.toLowerCase())));
-    }
-
-    // Search query
     if (this.searchQuery.trim()) {
       const q = this.searchQuery.toLowerCase().trim();
       result = result.filter(p =>
         p.title.toLowerCase().includes(q) ||
-        p.summary.toLowerCase().includes(q) ||
-        p.tags.some(t => t.toLowerCase().includes(q)) ||
-        p.techTags.some(t => t.toLowerCase().includes(q))
+        p.summary.toLowerCase().includes(q)
       );
     }
 
-    // Sort order by publishedAt (format: DD-MM-YYYY)
     result.sort((a, b) => {
       const dateA = this.parseDate(a.publishedAt);
       const dateB = this.parseDate(b.publishedAt);
@@ -180,6 +93,7 @@ export class NewBlogListComponent implements OnInit {
   }
 
   private parseDate(dateStr: string): number {
+    if (!dateStr) return 0;
     const parts = dateStr.split('-');
     if (parts.length === 3) {
       const day = parseInt(parts[0], 10);

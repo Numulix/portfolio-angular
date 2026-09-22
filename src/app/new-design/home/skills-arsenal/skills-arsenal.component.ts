@@ -17,4 +17,17 @@ import { NbBadgeComponent } from '../../../shared/design-system';
 })
 export class SkillsArsenalComponent {
   skillList: SkillItem[] = skills;
+
+  private readonly fallbackPalette = [
+    'bg-nb-yellow',
+    'bg-nb-blue',
+    'bg-nb-mint',
+    'bg-nb-pink',
+    'bg-nb-purple',
+    'bg-nb-coral'
+  ];
+
+  getDefaultBg(index: number): string {
+    return this.fallbackPalette[index % this.fallbackPalette.length];
+  }
 }

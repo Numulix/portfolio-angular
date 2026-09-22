@@ -1,5 +1,5 @@
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32 scroll-mt-24" id="projects">
-  
+
   <!-- Header Bar -->
   <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-4">
     <div>
@@ -11,77 +11,61 @@
         A selection of microfrontends, web applications, habit trackers, and automated scraper bots.
       </p>
     </div>
-    
-    <app-nb-button
-      variant="yellow"
-      size="md"
-      href="https://github.com/Numulix"
-      target="_blank"
-      icon="arrow_outward"
-      label="View GitHub Archive"
-      classes="self-start md:self-auto"
-    />
+
+    <app-nb-button variant="yellow" size="md" href="https://github.com/Numulix" target="_blank" icon="arrow_outward"
+      label="View GitHub Archive" classes="self-start md:self-auto" />
   </div>
 
-  <!-- Bento-style Brutalist Projects Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10">
-    @for (project of projects; track project.id) {
-      <div [class]="project.colSpan + ' project-card bg-white p-6 sm:p-7 flex flex-col justify-between'">
-        <div>
-          <!-- Frame Header -->
-          <div class="flex items-center justify-between pb-3.5 mb-4 border-b-2 border-black font-mono text-xs sm:text-sm font-bold">
-            <span class="flex items-center gap-2 truncate pr-2">
-              <span [class]="'w-3 h-3 border border-black inline-block shrink-0 ' + project.badgeBg"></span>
-              {{ project.number }}
-            </span>
-            <span [class]="'px-2.5 py-0.5 border border-black shadow-[2px_2px_0px_#000] shrink-0 uppercase text-xs font-extrabold ' + project.badgeBg">
-              {{ project.badge }}
-            </span>
-          </div>
-
-          <!-- Screenshot Card -->
-          <div [class]="'img-preview relative border-[3px] border-black overflow-hidden bg-nb-cream shadow-[4px_4px_0px_#000] mb-5 ' + project.aspectRatio">
-            <img
-              [src]="project.image"
-              [alt]="project.title + ' Screenshot'"
-              loading="lazy"
-              class="w-full h-full object-cover"
-            />
-          </div>
-
-          <!-- Tags -->
-          <div class="flex flex-wrap gap-2 mb-3.5">
-            @for (tag of project.tags; track tag.name) {
-              <span [class]="'nb-box px-2.5 py-0.5 font-mono text-xs font-bold hover:scale-105 transition-transform cursor-default ' + tag.bgClass">
-                {{ tag.name }}
-              </span>
-            }
-          </div>
-
-          <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-nb-black mb-2.5">
-            {{ project.title }}
-          </h3>
-          <p class="font-body text-base text-nb-black/80 leading-relaxed font-medium">
-            {{ project.description }}
-          </p>
-        </div>
-
-        <!-- Bottom Action Bar -->
-        <div class="pt-5 mt-5 border-t-2 border-black flex items-center justify-between gap-2">
-          <span class="font-mono text-xs text-nb-black/70 font-semibold truncate">
-            {{ project.pathLabel }}
+  <!-- Uniform Neo-Brutalist Projects Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    @for (project of projects; track project.title) {
+    <div class="project-card bg-white p-6 sm:p-7 flex flex-col justify-between h-full">
+      <div>
+        <!-- Frame Header -->
+        <div
+          class="flex items-center justify-between pb-3.5 mb-4 border-b-2 border-black font-mono text-xs sm:text-sm font-bold">
+          <span class="flex items-center gap-2 truncate pr-2">
+            <span [class]="'w-3 h-3 border border-black inline-block shrink-0 ' + getAccentBg($index)"></span>
+            {{ formatNumber($index) }} // {{ project.title | uppercase }}
           </span>
-          <app-nb-button
-            [variant]="project.actionVariant"
-            size="sm"
-            [href]="project.repoUrl"
-            target="_blank"
-            icon="arrow_outward"
-            label="View Code"
-            classes="shrink-0"
-          />
         </div>
+
+        <!-- Screenshot Card -->
+        <div
+          class="img-preview relative border-[3px] border-black overflow-hidden bg-nb-cream shadow-[4px_4px_0px_#000] mb-5 aspect-[16/10]">
+          <img [src]="project.image" [alt]="project.title + ' Screenshot'" loading="lazy"
+            class="w-full h-full object-cover" />
+        </div>
+
+        <!-- Tags -->
+        @if (project.tags && project.tags.length > 0) {
+        <div class="flex flex-wrap gap-2 mb-3.5">
+          @for (tag of project.tags; track tag; let tagIdx = $index) {
+          <span
+            [class]="'nb-box px-2.5 py-0.5 font-mono text-xs font-bold hover:scale-105 transition-transform cursor-default ' + getTagBg(tagIdx)">
+            {{ tag }}
+          </span>
+          }
+        </div>
+        }
+
+        <h3 class="font-display font-extrabold text-xl sm:text-2xl text-nb-black mb-2.5">
+          {{ project.title }}
+        </h3>
+        <p class="font-body text-sm sm:text-base text-nb-black/80 leading-relaxed font-medium">
+          {{ project.description }}
+        </p>
       </div>
+
+      <!-- Bottom Action Bar -->
+      <div class="pt-5 mt-6 border-t-2 border-black flex items-center justify-between gap-2">
+        <span class="font-mono text-xs text-nb-black/70 font-semibold truncate">
+          {{ formatRepoLabel(project.slug) }}
+        </span>
+        <app-nb-button [variant]="getButtonVariant($index)" size="sm" [href]="project.link" target="_blank"
+          icon="arrow_outward" label="View Code" classes="shrink-0" />
+      </div>
+    </div>
     }
   </div>
 

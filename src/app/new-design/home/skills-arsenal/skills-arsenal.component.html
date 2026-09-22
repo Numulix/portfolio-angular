@@ -12,14 +12,14 @@
       </p>
     </div>
     <div class="nb-box px-3.5 py-1.5 bg-white font-mono text-xs sm:text-sm font-bold self-start md:self-auto shadow-[3px_3px_0px_#000]">
-      INDEX: 12 PRIMARY MODULES
+      INDEX: {{ skillList.length }} PRIMARY MODULES
     </div>
   </div>
 
   <!-- 12-Item Sticker Tech Grid with Hover Lift & Alternating Tilt -->
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5">
     @for (skill of skillList; track skill.name) {
-      <div [class]="'tech-card p-4 sm:p-5 flex flex-col justify-between h-36 sm:h-40 ' + (skill.bgClass || 'bg-white')">
+      <div [class]="'tech-card p-4 sm:p-5 flex flex-col justify-between h-36 sm:h-40 ' + (skill.bgClass || getDefaultBg($index))">
         <div class="flex justify-between items-start">
           <span class="w-9 h-9 sm:w-10 sm:h-10 bg-white border-2 border-black flex items-center justify-center font-display font-extrabold text-sm sm:text-base shadow-[2px_2px_0px_#000]">
             @if (skill.icon) {
