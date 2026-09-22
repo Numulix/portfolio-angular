@@ -98,7 +98,7 @@
                 <!-- Title -->
                 <h2 class="text-xl sm:text-2xl font-display font-extrabold tracking-tight mb-3">
                   <a
-                    [routerLink]="['/new/blog', post.slug]"
+                    [routerLink]="['/blog', post.slug]"
                     class="hover:underline hover:text-black/80 transition-colors"
                   >
                     {{ post.title }}
@@ -115,7 +115,7 @@
               <div class="pt-4 border-t-2 border-black flex items-center justify-between font-mono text-xs">
                 <span class="text-black/60 font-bold truncate pr-2">/blog/{{ post.slug }}</span>
                 <a
-                  [routerLink]="['/new/blog', post.slug]"
+                  [routerLink]="['/blog', post.slug]"
                   [class]="'nb-btn border-2 border-black px-4 py-1.5 font-bold shadow-[2px_2px_0px_#000] flex items-center gap-1.5 shrink-0 ' + getButtonColor($index)"
                 >
                   <span>Read Post</span>

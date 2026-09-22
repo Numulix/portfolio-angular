@@ -20,13 +20,12 @@ export class NewNavbarComponent {
   @Output() linkClicked = new EventEmitter<void>();
 
   navItems: NewNavItem[] = [
-    { label: 'About', link: '/new/home#about', isRouterLink: false, hoverBg: 'hover:bg-nb-yellow' },
-    { label: 'Stack', link: '/new/home#stack', isRouterLink: false, hoverBg: 'hover:bg-nb-mint' },
-    { label: 'Projects', link: '/new/home#projects', isRouterLink: false, hoverBg: 'hover:bg-nb-pink' },
-    { label: 'Experience', link: '/new/home#experience', isRouterLink: false, hoverBg: 'hover:bg-nb-purple' },
-    { label: 'Blog', link: '/new/blog', isRouterLink: true, hoverBg: 'hover:bg-nb-blue' },
-    { label: 'Contact', link: '/new/home#contact', isRouterLink: false, hoverBg: 'hover:bg-nb-coral' },
-    { label: 'Lab 🧪', link: '/playground', isRouterLink: true, hoverBg: 'hover:bg-nb-yellow' }
+    { label: 'About', link: '/#about', isRouterLink: false, hoverBg: 'hover:bg-nb-yellow' },
+    { label: 'Stack', link: '/#stack', isRouterLink: false, hoverBg: 'hover:bg-nb-mint' },
+    { label: 'Projects', link: '/#projects', isRouterLink: false, hoverBg: 'hover:bg-nb-pink' },
+    { label: 'Experience', link: '/#experience', isRouterLink: false, hoverBg: 'hover:bg-nb-purple' },
+    { label: 'Blog', link: '/blog', isRouterLink: true, hoverBg: 'hover:bg-nb-blue' },
+    { label: 'Contact', link: '/#contact', isRouterLink: false, hoverBg: 'hover:bg-nb-coral' }
   ];
 
   onNavClick(): void {

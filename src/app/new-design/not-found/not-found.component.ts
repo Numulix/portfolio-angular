@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-import { NbButtonComponent } from '../../shared/design-system';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-not-found',
   standalone: true,
-  imports: [CommonModule, RouterModule, NbButtonComponent],
+  imports: [CommonModule, RouterModule],
   templateUrl: './not-found.component.html',
   styles: [`
     :host {
@@ -16,17 +15,6 @@ import { NbButtonComponent } from '../../shared/design-system';
   `]
 })
 export class NotFoundComponent {
-  constructor(private router: Router) {}
-
-  get isNewRoute(): boolean {
-    return this.router.url.startsWith('/new');
-  }
-
-  get homeUrl(): string {
-    return this.isNewRoute ? '/new/home' : '/';
-  }
-
-  get blogUrl(): string {
-    return this.isNewRoute ? '/new/blog' : '/blog';
-  }
+  readonly homeUrl = '/';
+  readonly blogUrl = '/blog';
 }

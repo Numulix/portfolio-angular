@@ -46,8 +46,7 @@ export class NewBlogPostComponent implements OnInit {
       if (this.slug) {
         this.fetchPost(this.slug);
       } else {
-        const notFoundUrl = this.router.url.startsWith('/new') ? '/new/404' : '/404';
-        this.router.navigate([notFoundUrl], { replaceUrl: true });
+        this.router.navigate(['/404'], { replaceUrl: true });
       }
     });
   }
@@ -79,16 +78,14 @@ export class NewBlogPostComponent implements OnInit {
           }
         } catch {
           this.isLoading = false;
-          const notFoundUrl = this.router.url.startsWith('/new') ? '/new/404' : '/404';
-          this.router.navigate([notFoundUrl], { replaceUrl: true });
+          this.router.navigate(['/404'], { replaceUrl: true });
         } finally {
           this.isLoading = false;
         }
       },
       error: () => {
         this.isLoading = false;
-        const notFoundUrl = this.router.url.startsWith('/new') ? '/new/404' : '/404';
-        this.router.navigate([notFoundUrl], { replaceUrl: true });
+        this.router.navigate(['/404'], { replaceUrl: true });
       }
     });
   }

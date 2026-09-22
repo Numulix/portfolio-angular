@@ -1,36 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
-import { Header } from "./header/header.component";
-import { FooterComponent } from "./footer/footer.component";
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { filter, map, mergeMap } from 'rxjs';
+import { NewHeaderComponent } from './new-design/layout/header/new-header.component';
+import { NewFooterComponent } from './new-design/layout/footer/new-footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Header, FooterComponent, RouterModule],
+  imports: [NewHeaderComponent, NewFooterComponent, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
   title = 'portfolio';
-  isLegacyRoute = true;
 
   constructor(
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _titleService: Title,
-    private _metaService: Meta    
+    private _metaService: Meta
   ) {}
 
   ngOnInit(): void {
-    this._router.events.pipe(
-      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      const url = event.urlAfterRedirects || event.url;
-      this.isLegacyRoute = !url.startsWith('/new') && !url.startsWith('/playground') && !url.startsWith('/design-system');
-    });
-
     this._router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       map(() => this._activatedRoute),
@@ -38,20 +30,17 @@ export class AppComponent implements OnInit {
         while (route.firstChild) {
           route = route.firstChild;
         }
-
         return route;
       }),
       filter(route => route.outlet === 'primary'),
       mergeMap(route => route.data)
     ).subscribe(event => {
       if (event['title']) {
-        this._titleService.setTitle(event['title'])
+        this._titleService.setTitle(event['title']);
       }
-
       if (event['description']) {
-        this._metaService.updateTag({ name: 'description', content: event['description'] })
+        this._metaService.updateTag({ name: 'description', content: event['description'] });
       }
-    })
+    });
   }
-
 }
