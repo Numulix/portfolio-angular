@@ -1,0 +1,71 @@
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full">
+  <!-- Back Button Navigation -->
+  <div class="mb-8">
+    <a routerLink="/blog"
+      class="nb-btn px-4 py-2 bg-white hover:bg-nb-yellow font-mono text-xs font-bold inline-flex items-center gap-2 shadow-[2px_2px_0px_#000]">
+      <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+      <span>// BACK TO DEV JOURNAL</span>
+    </a>
+  </div>
+
+  @if (isLoading) {
+  <div class="py-20 text-center font-mono">
+    <div class="inline-block p-6 bg-white border-[3px] border-black shadow-[4px_4px_0px_#000] animate-pulse">
+      <span class="text-sm font-bold">// DECRYPTING ARTICLE PAYLOAD...</span>
+    </div>
+  </div>
+  } @else {
+  <!-- Article Header Card -->
+  <header class="nb-box bg-white p-6 sm:p-10 mb-8 border-[3px] border-black shadow-[6px_6px_0px_#000]">
+    <div class="flex flex-wrap items-center gap-2 mb-4 font-mono text-xs font-bold">
+      <span class="bg-nb-yellow border-2 border-black px-2.5 py-0.5 shadow-[1px_1px_0px_#000]">
+        // DEV JOURNAL ENTRY
+      </span>
+      <span class="bg-nb-mint border-2 border-black px-2.5 py-0.5 shadow-[1px_1px_0px_#000] flex items-center gap-1">
+        <span class="material-symbols-outlined text-[14px]">schedule</span>
+        <span>{{ readTime }} READ</span>
+      </span>
+      @if (postAttributes['publishedAt']) {
+      <span class="bg-nb-cream border-2 border-black px-2.5 py-0.5 text-black/70 flex items-center gap-1">
+        <span class="material-symbols-outlined text-[14px]">calendar_today</span>
+        <span>{{ postAttributes['publishedAt'] }}</span>
+      </span>
+      }
+    </div>
+
+    <h1 class="text-2xl sm:text-4xl lg:text-5xl font-display font-black tracking-tight leading-tight my-4">
+      {{ postAttributes['title'] }}
+    </h1>
+
+    @if (postAttributes['summary']) {
+    <div
+      class="bg-nb-cream border-2 border-black p-4 sm:p-5 font-body text-base font-medium text-black/85 leading-relaxed shadow-[3px_3px_0px_#000] mt-6">
+      <div class="font-mono text-xs font-extrabold uppercase text-black/60 mb-1.5">// EXECUTIVE BRIEF</div>
+      <p>{{ postAttributes['summary'] }}</p>
+    </div>
+    }
+  </header>
+
+  <!-- Article Markdown Content Body -->
+  <article class="nb-box bg-white p-6 sm:p-10 lg:p-12 border-[3px] border-black shadow-[6px_6px_0px_#000] mb-8">
+    <div class="nb-article-content">
+      <markdown [data]="postContent"></markdown>
+    </div>
+  </article>
+
+  <!-- Bottom Navigation Actions -->
+  <div class="flex items-center justify-between pb-8">
+    <a routerLink="/blog"
+      class="nb-btn px-5 py-2.5 bg-white hover:bg-nb-yellow font-mono text-xs font-bold shadow-[3px_3px_0px_#000] inline-flex items-center gap-2">
+      <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+      <span>Back to All Articles</span>
+    </a>
+
+    <a routerLink="/"
+      class="nb-btn px-5 py-2.5 bg-nb-yellow hover:bg-nb-yellow-light font-display font-extrabold text-sm shadow-[3px_3px_0px_#000] inline-flex items-center gap-2">
+      <span>Explore Portfolio</span>
+      <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+    </a>
+  </div>
+  }
+</div>

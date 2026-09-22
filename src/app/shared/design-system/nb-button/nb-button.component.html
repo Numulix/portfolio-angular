@@ -1,0 +1,55 @@
+@if (href) {
+  <a
+    [href]="href"
+    [target]="target"
+    [rel]="rel"
+    [class]="combinedClasses"
+    [attr.aria-label]="label || null"
+  >
+    @if (icon && iconPosition === 'leading') {
+      <span class="material-symbols-outlined text-[18px] mr-1.5 transition-transform group-hover:-translate-x-0.5" aria-hidden="true">{{ icon }}</span>
+    }
+    @if (label) {
+      <span>{{ label }}</span>
+    }
+    <ng-content></ng-content>
+    @if (icon && iconPosition === 'trailing') {
+      <span class="material-symbols-outlined text-[18px] ml-1.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true">{{ icon }}</span>
+    }
+  </a>
+} @else if (routerLink) {
+  <a
+    [routerLink]="routerLink"
+    [class]="combinedClasses"
+    [attr.aria-label]="label || null"
+  >
+    @if (icon && iconPosition === 'leading') {
+      <span class="material-symbols-outlined text-[18px] mr-1.5 transition-transform group-hover:-translate-x-0.5" aria-hidden="true">{{ icon }}</span>
+    }
+    @if (label) {
+      <span>{{ label }}</span>
+    }
+    <ng-content></ng-content>
+    @if (icon && iconPosition === 'trailing') {
+      <span class="material-symbols-outlined text-[18px] ml-1.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true">{{ icon }}</span>
+    }
+  </a>
+} @else {
+  <button
+    [type]="type"
+    [disabled]="disabled"
+    [class]="combinedClasses"
+    [attr.aria-label]="label || null"
+  >
+    @if (icon && iconPosition === 'leading') {
+      <span class="material-symbols-outlined text-[18px] mr-1.5 transition-transform group-hover:-translate-x-0.5" aria-hidden="true">{{ icon }}</span>
+    }
+    @if (label) {
+      <span>{{ label }}</span>
+    }
+    <ng-content></ng-content>
+    @if (icon && iconPosition === 'trailing') {
+      <span class="material-symbols-outlined text-[18px] ml-1.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true">{{ icon }}</span>
+    }
+  </button>
+}

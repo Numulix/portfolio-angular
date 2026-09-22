@@ -1,0 +1,47 @@
+<div [class]="'marquee-wrapper overflow-hidden select-none ' + bgClass + ' ' + borderClass + ' ' + paddingClass + ' ' + classes">
+  <div class="marquee-track font-display font-extrabold text-sm sm:text-base tracking-wider uppercase" [style.animationDuration]="duration">
+    
+    <!-- Sequence 1 (First Half) -->
+    <div class="flex items-center gap-8 shrink-0 pr-8">
+      @for (item of trackItems; track $index) {
+        @if (item.isBadge) {
+          <span [class]="'ticker-item gap-2 px-2.5 py-1 border-2 border-black shadow-[2px_2px_0px_#000] inline-flex items-center ' + item.bgClass">
+            @if (item.icon) {
+              <span class="text-xs">{{ item.icon }}</span>
+            }
+            <span>{{ item.text }}</span>
+          </span>
+        } @else {
+          <span class="ticker-item gap-2 inline-flex items-center">
+            @if (item.icon) {
+              <span class="text-xs">{{ item.icon }}</span>
+            }
+            <span>{{ item.text }}</span>
+          </span>
+        }
+      }
+    </div>
+
+    <!-- Sequence 2 (Identical Duplicate for 100% Seamless Infinite Loop) -->
+    <div aria-hidden="true" class="flex items-center gap-8 shrink-0 pr-8">
+      @for (item of trackItems; track $index) {
+        @if (item.isBadge) {
+          <span [class]="'ticker-item gap-2 px-2.5 py-1 border-2 border-black shadow-[2px_2px_0px_#000] inline-flex items-center ' + item.bgClass">
+            @if (item.icon) {
+              <span class="text-xs">{{ item.icon }}</span>
+            }
+            <span>{{ item.text }}</span>
+          </span>
+        } @else {
+          <span class="ticker-item gap-2 inline-flex items-center">
+            @if (item.icon) {
+              <span class="text-xs">{{ item.icon }}</span>
+            }
+            <span>{{ item.text }}</span>
+          </span>
+        }
+      }
+    </div>
+
+  </div>
+</div>

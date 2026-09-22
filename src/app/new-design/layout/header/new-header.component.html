@@ -1,0 +1,71 @@
+<header class="sticky top-0 z-50 bg-[#FDFBF7] border-b-[3px] border-black px-4 lg:px-8 py-3.5 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+    
+    <!-- Logo Brand -->
+    <a
+      routerLink="/"
+      class="nb-btn px-3.5 py-1.5 bg-nb-mint flex items-center gap-2 font-display font-extrabold text-base tracking-tight hover:rotate-1"
+    >
+      <span class="w-3.5 h-3.5 bg-nb-yellow border-2 border-black inline-block"></span>
+      <span>NUMULIX<span class="text-xs font-mono ml-1 font-semibold">.DEV</span></span>
+    </a>
+
+    <!-- Desktop Navigation Menu -->
+    <app-new-navbar [isMobile]="false" />
+
+    <!-- Action Button, Avatar & Mobile Toggle -->
+    <div class="flex items-center gap-2.5">
+      <app-nb-button
+        variant="yellow"
+        size="sm"
+        [href]="resumeUrl"
+        target="_blank"
+        icon="download"
+        label="Resume"
+        classes="hidden sm:inline-flex"
+      />
+
+      <!-- Avatar with Online Status Indicator -->
+      <div class="relative">
+        <img
+          src="/images/ghibli-square-crop.webp"
+          alt="Jovan Babić Avatar"
+          class="w-9 h-9 border-2 border-black object-cover shadow-[2px_2px_0px_#000] hover:scale-105 transition-transform"
+        />
+        <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-nb-green border border-black inline-block"></span>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        (click)="toggleNavOpen()"
+        type="button"
+        class="nb-btn w-9 h-9 grid place-items-center bg-white md:!hidden"
+        [attr.aria-expanded]="navOpen"
+        aria-label="Toggle navigation menu"
+      >
+        <span class="material-symbols-outlined text-[20px]">
+          {{ navOpen ? 'close' : 'menu' }}
+        </span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  @if (navOpen) {
+    <div class="md:hidden border-t-2 border-black bg-nb-cream mt-3.5 -mx-4 pb-2 shadow-[0px_6px_0px_#000]">
+      <app-new-navbar [isMobile]="true" (linkClicked)="closeNav()" />
+      <div class="px-4 pt-1 pb-3">
+        <app-nb-button
+          variant="yellow"
+          size="md"
+          [href]="resumeUrl"
+          target="_blank"
+          icon="download"
+          label="Download Resume (CV)"
+          classes="w-full justify-center"
+        />
+      </div>
+    </div>
+  }
+</header>

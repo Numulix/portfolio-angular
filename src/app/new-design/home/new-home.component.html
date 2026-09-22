@@ -1,0 +1,115 @@
+<!-- HERO SECTION (#about) -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12 pb-16 sm:pb-20 scroll-mt-24" id="about">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+
+    <!-- Left Column: Bio, Headline & CTA -->
+    <div class="lg:col-span-7 flex flex-col gap-5 sm:gap-6">
+
+      <!-- Badges Row -->
+      <div class="flex flex-wrap items-center gap-2">
+        <app-nb-badge variant="mint" [ping]="true" label="Open to new opportunities" />
+        <app-nb-badge variant="white" label="MID FRONTEND DEV" />
+        <app-nb-badge variant="pink" label="CS DEGREE // 8.81 GPA" />
+      </div>
+
+      <!-- Main Headline with Chunky Highlighters -->
+      <div class="flex flex-col gap-2.5">
+        <div
+          class="inline-block nb-box px-3 py-1 bg-white font-mono text-sm font-bold -rotate-1 hover:rotate-0 transition-transform cursor-default w-max">
+          👋 HELLO WORLD! I'M JOVAN
+        </div>
+        <h1
+          class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl text-nb-black leading-[1.08] tracking-tight">
+          Designing <span
+            class="bg-nb-yellow px-2 py-0.5 border-2 border-black inline-block rotate-1 shadow-[3px_3px_0px_#000] hover:rotate-2 hover:scale-105 transition-transform cursor-default">Interactive</span>
+          and <span
+            class="bg-nb-pink px-2 py-0.5 border-2 border-black inline-block -rotate-1 shadow-[3px_3px_0px_#000] hover:-rotate-2 hover:scale-105 transition-transform cursor-default">Scalable</span>
+          Web Applications
+        </h1>
+      </div>
+
+      <!-- Bio Card -->
+      <div class="nb-box p-5 sm:p-6 bg-white flex flex-col gap-3 hover:shadow-[7px_7px_0px_#000] transition-shadow">
+        <p class="font-body text-base sm:text-lg leading-relaxed text-nb-black/90">
+          Hello there and welcome! I'm <strong class="bg-nb-yellow px-1 underline decoration-2">Jovan</strong>, a highly
+          motivated Frontend Engineer with <strong>3 years of experience</strong> specializing in <mark
+            class="bg-nb-mint px-1 font-semibold">Angular development</mark>. Experienced in using
+          <strong>React</strong> and <strong>Next.js</strong> for personal projects as well. In possession of a
+          Bachelor's degree in Computer Science.
+        </p>
+        <p class="font-body text-sm sm:text-base text-nb-black/80 font-medium">
+          Born and raised in Kruševac but currently living in Belgrade, Serbia. Gamer and enjoyer of Japanese animation
+          and culture. Recent Pokémon TCG collector! ⚡
+        </p>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-wrap items-center gap-3 pt-1">
+        <app-nb-button variant="yellow" size="lg" [href]="resumeUrl" target="_blank" icon="download"
+          label="Download CV" />
+        <app-nb-button variant="purple" size="lg" routerLink="/blog" icon="article" label="Read My Blog" />
+        <app-nb-button variant="white" size="lg" href="/#contact" icon="chat" label="Get in Touch" />
+      </div>
+
+      <!-- Metric Stat Blocks -->
+      <div class="grid grid-cols-3 gap-3 pt-1">
+        <app-stat-card variant="blue" tilt="left" subtitle="Deployed" number="10+" label="Projects Done" />
+        <app-stat-card variant="yellow" tilt="right" subtitle="XP Level" number="3+" label="Years Exp." />
+        <app-stat-card variant="pink" tilt="slight" subtitle="Pokédex" number="580+" label="TCG Caught" />
+      </div>
+
+    </div>
+
+    <!-- Right Column: Interactive Portrait Frame -->
+    <div class="lg:col-span-5 flex justify-center">
+      <div class="relative w-full max-w-[390px]">
+
+        <!-- Decorative Tape Badges -->
+        <div
+          class="absolute -top-3 left-1/2 -translate-x-1/2 z-20 bg-nb-yellow/90 border-2 border-black px-6 py-1 font-mono text-[11px] font-extrabold uppercase shadow-[2px_2px_0px_#000] rotate-1 hover:rotate-3 transition-transform cursor-default">
+          ✨ JOVAN BABIĆ // AVATAR
+        </div>
+        <div
+          class="absolute -bottom-3 -right-2 z-20 bg-nb-mint border-2 border-black px-3 py-1 font-mono text-xs font-extrabold shadow-[2px_2px_0px_#000] -rotate-2 hover:-rotate-4 transition-transform cursor-default">
+          ⭐ POKÉMON COLLECTOR
+        </div>
+        <div
+          class="absolute -top-3 -left-3 z-20 bg-nb-coral border-2 border-black px-2.5 py-0.5 font-mono text-[11px] font-bold shadow-[2px_2px_0px_#000] rotate-3 hover:scale-110 transition-transform cursor-default">
+          LVL.03
+        </div>
+
+        <!-- Frame Card -->
+        <div class="nb-box avatar-interactive bg-white p-3.5 pb-5">
+          <div
+            class="relative border-[3px] border-black overflow-hidden bg-nb-cream shadow-[3px_3px_0px_#000] aspect-[3/4] group">
+            <img src="/images/avatar.webp" alt="Jovan Babić Portrait"
+              class="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-500 ease-out" />
+            <div class="absolute bottom-2 left-2 bg-black text-white px-2 py-0.5 font-mono text-[11px] font-bold">
+              BEPPU • KYUSHU • JAPAN
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t-2 border-black/20 flex items-center justify-between font-mono text-xs">
+            <span class="font-bold flex items-center gap-1">
+              <span class="w-2.5 h-2.5 bg-nb-green border border-black inline-block"></span>
+              NUMULIX
+            </span>
+            <span class="bg-nb-gray px-2 py-0.5 border border-black font-semibold">BELGRADE, SERBIA</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MARQUEE STRIP (Infinite Tech Loop) -->
+<app-marquee-ticker bgClass="bg-white" borderClass="border-y-[3px] border-black" paddingClass="py-3 sm:py-3.5"
+  duration="38s" />
+
+<!-- SECTION COMPONENTS FOR PHASE 4 -->
+<app-skills-arsenal />
+<app-bento-projects />
+<app-experience-deck />
+<app-contact-section />

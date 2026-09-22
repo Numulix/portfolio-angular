@@ -1,0 +1,64 @@
+<footer class="w-full border-t-[3px] border-black bg-white py-10 px-4 sm:px-6 lg:px-8 mt-20">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    
+    <!-- Identity & Role -->
+    <div class="flex flex-col items-center md:items-start gap-1 text-center md:text-left">
+      <div class="flex items-center gap-2">
+        <span class="font-display font-extrabold text-xl">Jovan Babić</span>
+        <span class="font-mono text-sm font-bold text-black/60">//</span>
+        <span class="bg-nb-yellow px-2 py-0.5 border border-black font-mono text-xs font-extrabold shadow-[2px_2px_0px_#000]">
+          NUMULIX
+        </span>
+      </div>
+      <p class="font-body text-sm text-black/75 font-medium">
+        Frontend Software Engineer building interactive and scalable web experiences.
+      </p>
+    </div>
+
+    <!-- Center Playful Note -->
+    <div class="nb-box px-4 py-1.5 bg-nb-pink font-mono text-xs font-bold flex items-center gap-1.5 hover:-translate-y-0.5 hover:rotate-1 transition-transform cursor-pointer select-none">
+      <span>Made with 💛 by Numulix</span>
+    </div>
+
+    <!-- Right System Status & Socials -->
+    <div class="flex flex-col sm:flex-row items-center gap-3 font-mono text-xs font-bold">
+      <!-- Status Pill -->
+      <app-nb-badge variant="mint" [ping]="true" label="SYS.ONLINE" />
+      <span class="bg-nb-gray px-2.5 py-1 border border-black shadow-[2px_2px_0px_#000]">
+        UTC+1
+      </span>
+
+      <!-- Social Links -->
+      <div class="flex items-center gap-1.5 ml-1">
+        <a
+          href="https://github.com/Numulix"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nb-btn px-2 py-1 bg-white hover:bg-nb-yellow text-xs"
+          aria-label="GitHub Profile"
+        >
+          GH
+        </a>
+        <a
+          href="https://www.linkedin.com/in/jovan-babi%C4%87-56530b179/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nb-btn px-2 py-1 bg-white hover:bg-nb-blue text-xs"
+          aria-label="LinkedIn Profile"
+        >
+          LI
+        </a>
+        <a
+          href="https://www.instagram.com/jbabic_numulix/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nb-btn px-2 py-1 bg-white hover:bg-nb-pink text-xs"
+          aria-label="Instagram Profile"
+        >
+          IG
+        </a>
+      </div>
+    </div>
+
+  </div>
+</footer>

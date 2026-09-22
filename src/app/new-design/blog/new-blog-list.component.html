@@ -1,0 +1,133 @@
+<main class="max-w-7xl mx-auto px-4 lg:px-8 py-10 w-full">
+  <!-- BEGIN: Hero Section -->
+  <section class="mb-12">
+    <!-- Neo-brutalist System Tag Line -->
+    <div class="flex flex-wrap items-center gap-2 mb-4 font-mono text-xs font-bold">
+      <span class="bg-black text-white px-2.5 py-1 border-2 border-black">// DEV JOURNAL &amp; WRITINGS</span>
+      <span class="bg-nb-mint px-2.5 py-1 border-2 border-black shadow-[2px_2px_0px_#000]">TECHNICAL WRITEUPS &amp; CASE STUDIES</span>
+      <span class="bg-nb-purple px-2.5 py-1 border-2 border-black shadow-[2px_2px_0px_#000] ml-auto hidden sm:inline-block">
+        INDEX: {{ filteredPosts.length }} ARTICLES PUBLISHED
+      </span>
+    </div>
+
+    <!-- Hero Heading -->
+    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.15] max-w-5xl mb-6">
+      Writing on <span class="bg-nb-yellow px-3 py-1 border-[3px] border-black inline-block shadow-[4px_4px_0px_#000] mx-1">Frontend Engineering</span>
+    </h1>
+
+    <!-- Search & Sort Controls Bar -->
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4 border-t-[3px] border-black">
+      <div class="font-mono text-xs font-bold uppercase flex items-center gap-2">
+        <span class="bg-black text-white px-2.5 py-1 border-2 border-black">
+          // ALL ARTICLES &amp; LOGS ({{ filteredPosts.length }})
+        </span>
+      </div>
+
+      <!-- Search Bar & Sort Button -->
+      <div class="flex items-center gap-2 w-full sm:w-auto font-mono text-xs">
+        <div class="relative flex-grow sm:w-64">
+          <input
+            type="text"
+            [(ngModel)]="searchQuery"
+            (ngModelChange)="onSearchChange()"
+            placeholder="Search articles..."
+            class="nb-input w-full bg-white border-2 border-black px-3 py-1.5 text-xs font-mono shadow-[2px_2px_0px_#000] placeholder:text-gray-400 font-bold"
+          />
+        </div>
+        <button
+          type="button"
+          (click)="toggleSort()"
+          class="nb-btn bg-white hover:bg-nb-yellow border-2 border-black px-3 py-1.5 font-bold shadow-[2px_2px_0px_#000] flex items-center gap-1.5 shrink-0 cursor-pointer"
+          title="Toggle newest / oldest order"
+        >
+          <span>SORT: {{ sortOrder | uppercase }}</span>
+          <span class="material-symbols-outlined text-[16px]">
+            {{ sortOrder === 'newest' ? 'arrow_downward' : 'arrow_upward' }}
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+  <!-- END: Hero Section -->
+
+  <!-- BEGIN: Loading State -->
+  @if (isLoading) {
+    <div class="py-16 text-center font-mono">
+      <div class="inline-block p-6 bg-white border-[3px] border-black shadow-[4px_4px_0px_#000] animate-pulse">
+        <span class="text-sm font-bold">// TRANSMITTING ARTICLE REGISTRY...</span>
+      </div>
+    </div>
+  } @else {
+
+    <!-- Empty State -->
+    @if (filteredPosts.length === 0) {
+      <div class="my-12 p-8 sm:p-12 text-center bg-white border-[3px] border-black shadow-[6px_6px_0px_#000]">
+        <div class="w-12 h-12 bg-nb-pink border-2 border-black mx-auto mb-4 flex items-center justify-center font-mono font-black text-xl shadow-[2px_2px_0px_#000]">
+          !
+        </div>
+        <h3 class="font-display font-black text-xl sm:text-2xl mb-2">NO ARTICLES MATCH QUERY</h3>
+        <p class="font-body text-sm text-black/70 mb-6 max-w-md mx-auto">
+          No articles matched "{{ searchQuery }}". Try clearing your search keyword.
+        </p>
+        <button
+          type="button"
+          (click)="resetFilters()"
+          class="nb-btn px-5 py-2.5 bg-nb-yellow hover:bg-nb-yellow-light font-display font-extrabold text-sm"
+        >
+          Clear Search
+        </button>
+      </div>
+    } @else {
+
+      <!-- BEGIN: Uniform Articles List Grid -->
+      <section class="mb-14">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          @for (post of filteredPosts; track post.slug) {
+            <article class="nb-box bg-white p-6 sm:p-7 flex flex-col justify-between hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0px_#000] transition-all h-full">
+              <div>
+                <!-- Header Meta Bar -->
+                <div class="flex items-center justify-between gap-2 pb-3 mb-4 border-b-2 border-black font-mono text-xs font-bold">
+                  <span class="bg-nb-cream border border-black px-2 py-0.5 shadow-[1px_1px_0px_#000]">
+                    ENTRY // {{ formatNumber($index) }}
+                  </span>
+                  <span class="bg-nb-mint border border-black px-2.5 py-0.5 shadow-[1px_1px_0px_#000]">
+                    {{ post.publishedAt }}
+                  </span>
+                </div>
+
+                <!-- Title -->
+                <h2 class="text-xl sm:text-2xl font-display font-extrabold tracking-tight mb-3">
+                  <a
+                    [routerLink]="['/blog', post.slug]"
+                    class="hover:underline hover:text-black/80 transition-colors"
+                  >
+                    {{ post.title }}
+                  </a>
+                </h2>
+
+                <!-- Excerpt / Summary -->
+                <p class="font-body text-black/80 text-sm sm:text-base font-medium leading-relaxed mb-6">
+                  {{ post.summary }}
+                </p>
+              </div>
+
+              <!-- Card Footer CTA -->
+              <div class="pt-4 border-t-2 border-black flex items-center justify-between font-mono text-xs">
+                <span class="text-black/60 font-bold truncate pr-2">/blog/{{ post.slug }}</span>
+                <a
+                  [routerLink]="['/blog', post.slug]"
+                  [class]="'nb-btn border-2 border-black px-4 py-1.5 font-bold shadow-[2px_2px_0px_#000] flex items-center gap-1.5 shrink-0 ' + getButtonColor($index)"
+                >
+                  <span>Read Post</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+      <!-- END: Uniform Articles List Grid -->
+
+    }
+  }
+</main>

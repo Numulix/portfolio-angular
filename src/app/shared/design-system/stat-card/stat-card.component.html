@@ -1,0 +1,10 @@
+<div [class]="combinedClasses">
+  @if (subtitle) {
+    <span class="font-mono text-[11px] font-bold uppercase tracking-wider block text-black/70">{{ subtitle }}</span>
+  }
+  <div class="font-display font-extrabold text-3xl sm:text-4xl my-0.5">{{ number }}</div>
+  @if (label) {
+    <span class="font-mono text-xs font-bold block">{{ label }}</span>
+  }
+  <ng-content></ng-content>
+</div>

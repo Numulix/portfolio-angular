@@ -4,6 +4,7 @@ export interface ProjectItem {
     tags: string[];
     description: string;
     link: string;
+    slug: string;
 }
 
 export interface PostMetadata {
