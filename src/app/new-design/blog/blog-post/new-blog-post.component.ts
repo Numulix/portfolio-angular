@@ -57,7 +57,24 @@ export class NewBlogPostComponent implements OnInit {
     this.http.get(`/blog/${slug}.md`, { responseType: 'text' }).subscribe({
       next: (data) => {
         try {
+          const trimmed = (data || '').trim();
+          if (
+            !fm.test(trimmed) ||
+            trimmed.toLowerCase().startsWith('<!doctype') ||
+            trimmed.toLowerCase().startsWith('<html')
+          ) {
+            this.isLoading = false;
+            this.router.navigate(['/404'], { replaceUrl: true });
+            return;
+          }
+
           const parsed: any = fm(data);
+          if (!parsed?.attributes?.title) {
+            this.isLoading = false;
+            this.router.navigate(['/404'], { replaceUrl: true });
+            return;
+          }
+
           this.postAttributes = parsed.attributes || {};
           let cleanBody = parsed.body || '';
           cleanBody = cleanBody.replace(/^#\s+[^\n]+\n+(_\([^\)]+\)_\n+)?/, '');

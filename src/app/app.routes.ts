@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { blogSlugGuard } from './new-design/blog/blog-slug.guard';
 
 export const routes: Routes = [
     {
@@ -19,6 +20,7 @@ export const routes: Routes = [
     },
     {
         path: 'blog/:slug',
+        canActivate: [blogSlugGuard],
         loadComponent: () => import('./new-design/blog/blog-post/new-blog-post.component').then(m => m.NewBlogPostComponent)
     },
     {
