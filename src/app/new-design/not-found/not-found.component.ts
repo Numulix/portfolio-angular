@@ -9,7 +9,9 @@ import { RouterModule } from '@angular/router';
   templateUrl: './not-found.component.html',
   styles: [`
     :host {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
       width: 100%;
     }
   `]
